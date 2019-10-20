@@ -3,49 +3,37 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
-/**
- * Orders Controller
- *
- * @property \App\Model\Table\OrdersTable $Orders
- */
 class OrdersController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
+
+////////////////////////////////////////////////////////////////////////////////
+
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users']
+            'limit' => 100
         ];
-        $this->set('orders', $this->paginate($this->Orders));
+        $orders = $this->paginate($this->Orders);
+
+        $this->set(compact('orders'));
         $this->set('_serialize', ['orders']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Order id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function view($id = null)
     {
         $order = $this->Orders->get($id, [
-            'contain' => ['Users', 'Purchases']
+            'contain' => ['Orderproducts']
         ]);
-        $this->set('order', $order);
+
+        $this->set(compact('order'));
         $this->set('_serialize', ['order']);
     }
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function add()
     {
         $order = $this->Orders->newEntity();
@@ -58,18 +46,12 @@ class OrdersController extends AppController
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Orders->Users->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'users'));
+        $this->set(compact('order'));
         $this->set('_serialize', ['order']);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Order id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function edit($id = null)
     {
         $order = $this->Orders->get($id, [
@@ -84,18 +66,12 @@ class OrdersController extends AppController
                 $this->Flash->error(__('The order could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Orders->Users->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'users'));
+        $this->set(compact('order'));
         $this->set('_serialize', ['order']);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Order id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -107,4 +83,7 @@ class OrdersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

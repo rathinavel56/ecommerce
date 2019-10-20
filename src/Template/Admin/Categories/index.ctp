@@ -1,41 +1,64 @@
+<script>
 
-<div class="categories index large-9 medium-8 columns content">
-    <?= $this->Html->link(__('Add New'), ['action' => 'add'], ['class' => 'btn btn-success pull-right']) ?>
-    <h3 class="page-header"><?= __('Categories') ?></h3>
-    <table class="table table-responsive table-condensed table-striped">
-        <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('name') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
-                <th><?= $this->Paginator->sort('status') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($categories as $category): ?>
+$(document).ready(function() {
+
+    $('.name').editable({
+        type: 'text',
+        name: 'name',
+        url: '/admin/categories/editable',
+        title: 'Name',
+        placement: 'right',
+    });
+
+});
+
+</script>
+
+<h3>Categories</h3>
+
+<?php echo $this->element('pagination'); ?>
+
+<table class="table-striped table-bordered table-condensed table-hover">
+    <thead>
+        <tr>
+            <th><?= $this->Paginator->sort('id') ?></th>
+            <th><?= $this->Paginator->sort('name') ?></th>
+            <th><?= $this->Paginator->sort('slug') ?></th>
+            <th><?= $this->Paginator->sort('description') ?></th>
+            <th><?= $this->Paginator->sort('sort') ?></th>
+            <th><?= $this->Paginator->sort('active') ?></th>
+            <th class="actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($categories as $category): ?>
             <tr>
                 <td><?= $this->Number->format($category->id) ?></td>
-                <td><?= h($category->name) ?></td>
-                <td><?= h($category->created) ?></td>
-                <td><?= h($category->modified) ?></td>
-                <td><?= h($category->status) ?></td>
+                <td><span class="name" data-value="<?php echo $category->name; ?>" data-pk="<?php echo $category->id; ?>"><?php echo $category->name; ?></span></td>
+                <td><?= h($category->slug) ?></td>
+                <td><?= h($category->description) ?></td>
+                <td><?= $this->Number->format($category->sort) ?></td>
+                <td><?php echo $this->Html->link($this->Html->image('icon_' . $category->active . '.png'), ['controller' => 'categories', 'action' => 'toggle', 'active', $category->id], ['class' => 'toggle', 'escape' => false]); ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('<i class="glyphicon glyphicon-eye-open"></i>'), ['action' => 'view', $category->id], ['class' => 'btn btn-xs btn-primary', 'escapeTitle' => false]) ?>
-                    <?= $this->Html->link(__('<i class="glyphicon glyphicon-edit"></i>'), ['action' => 'edit', $category->id], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>
-                    <?= $this->Form->postLink(__('<i class="glyphicon glyphicon-trash"></i>'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id), 'class' => 'btn btn-xs btn-danger', 'escapeTitle' => false]) ?>
+                    <?php echo $this->Html->link('View', ['action' => 'view', $category->id], ['class' => 'btn btn-default btn-xs']); ?>
+                    <?php echo $this->Html->link('Edit', ['action' => 'edit', $category->id], ['class' => 'btn btn-default btn-xs']); ?>
+                    <?php // echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]); ?>
                 </td>
             </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
-</div>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<br />
+
+<?php echo $this->element('pagination'); ?>
+
+<br />
+<br />
+
+<h3>Actions</h3>
+
+<?php echo $this->Html->link('New', ['action' => 'add'], ['class' => 'btn btn-default']) ?>
+
+<br />
+<br />

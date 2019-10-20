@@ -7,128 +7,94 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * Users Model
- *
- * @property \Cake\ORM\Association\HasMany $Carts
- * @property \Cake\ORM\Association\HasMany $Orders
- * @property \Cake\ORM\Association\HasMany $Reviews
- */
 class UsersTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function initialize(array $config)
     {
-        parent::initialize($config);
-
         $this->table('users');
         $this->displayField('id');
         $this->primaryKey('id');
-
         $this->addBehavior('Timestamp');
-
-        $this->hasMany('Carts', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('Orders', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('Reviews', [
-            'foreignKey' => 'user_id'
-        ]);
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('id', 'create');
-
-        $validator
-            ->add('email', 'valid', ['rule' => 'email'])
-            ->requirePresence('email', 'create')
-            ->notEmpty('email');
-
-        $validator
-            ->requirePresence('password', 'create')
-            ->notEmpty('password');
-
-        $validator
-            ->requirePresence('first_name', 'create')
-            ->notEmpty('first_name');
-
-        $validator
-            ->requirePresence('last_name', 'create')
-            ->notEmpty('last_name');
-
-        $validator
-            ->allowEmpty('company_name');
-
-        $validator
-            ->allowEmpty('avatar');
-
-        $validator
-            ->add('birth_date', 'valid', ['rule' => 'date'])
-            ->allowEmpty('birth_date');
-
-        $validator
-            ->requirePresence('address', 'create')
-            ->notEmpty('address');
-
-        $validator
-            ->allowEmpty('address2');
-
-        $validator
-            ->requirePresence('city', 'create')
-            ->notEmpty('city');
-
-        $validator
-            ->add('zip', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('zip', 'create')
-            ->notEmpty('zip');
-
-        $validator
-            ->allowEmpty('country');
-
-        $validator
-            ->requirePresence('phone', 'create')
-            ->notEmpty('phone');
-
-        $validator
-            ->add('role', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('role', 'create')
-            ->notEmpty('role');
-
-        $validator
-            ->add('status', 'valid', ['rule' => 'boolean'])
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->allowEmpty('id', 'create')
+            // ->allowEmpty('role')
+            // ->allowEmpty('first_name')
+            ->notBlank('first_name', 'First Name is required')
+            ->add('first_name', [
+                'rule1' => [
+                    'rule' => ['minLength', 2],
+                    'message' => 'First Name need to be at least 2 characters long',
+                ],
+                'rule2' => [
+                    'rule' => ['maxLength', 20],
+                    'message' => 'First Name need to be maximum 20 characters long',
+                ]
+            ])
+            ->notBlank('last_name', 'Last Name is required')
+            ->add('last_name', [
+                'rule1' => [
+                    'rule' => ['minLength', 2],
+                    'message' => 'Last Name need to be at least 2 characters long',
+                ],
+                'rule2' => [
+                    'rule' => ['maxLength', 20],
+                    'message' => 'Last Name need to be maximum 20 characters long',
+                ]
+            ])
+            ->notBlank('password', 'Password is required')
+            ->add('password', [
+                'rule1' => [
+                    'rule' => ['minLength', 2],
+                    'message' => 'Password need to be at least 2 characters long',
+                ],
+                'rule2' => [
+                    'rule' => ['maxLength', 20],
+                    'message' => 'Password need to be maximum 20 characters long',
+                ]
+            ])
+            // ->allowEmpty('phone')
+            ->notBlank('phone', 'Phone is required')
+            ->notBlank('email', 'Email is required')
+            ->add('email', [
+                'rule1' => [
+                    'rule' => 'email',
+                    'message' => 'Please enter valid Email',
+                ],
+                'rule2' => [
+                    'rule' => 'validateUnique',
+                    'provider' => 'table',
+                    'message' => 'Email already in use',
+                ]
+            ])
+            ->allowEmpty('uuid')
+            ->add('active', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('active')
+            ->add('login_count', 'valid', ['rule' => 'numeric'])
+            ->allowEmpty('login_count')
+            ->add('login_last', 'valid', ['rule' => 'datetime'])
+            ->allowEmpty('login_last');
 
         return $validator;
     }
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
         return $rules;
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

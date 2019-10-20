@@ -1,26 +1,23 @@
-# CakePHP eCommerce Application
+# CakePHP 3 Shopping Cart
 
-A simple application to make an online shop with cakephp
+## Install
 
-## Installation
-
-1. Clone or download this repository.
-2. Run `php composer.phar install`.
-
-If Composer is installed globally, run
 ```bash
-composer install
+composer create-project --prefer-dist -s dev andraskende/cakephp-3-shopping-cart myapp
 ```
-3. Create database and import the provided SQL file.
-4. Update your database setting on `config/database.php`.
 
-You should now be able to visit the path to where you installed the app and see
-the setup traffic lights.
+## Create Mysql Database
 
-## Configuration
+```bash
+mysql -u db_username -p db_password db_name < config/schema/shop.sql
+```
 
-Read and edit `config/app.php` and setup the 'Datasources' and any other
-configuration relevant for your application.
+## Login
 
-## Screenshots
-![Screen1](https://raw.githubusercontent.com/biplobice/CakeShop/master/screenshots/Screen-1.png)
+/admin
+
+username: admin
+
+password: admin
+
+Dont forget to change passwords, salt

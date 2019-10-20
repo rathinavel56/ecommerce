@@ -1,21 +1,27 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['controller' => 'Products', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product'), ['controller' => 'Products', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="categories form large-9 medium-8 columns content">
-    <?= $this->Form->create($category) ?>
-    <fieldset>
-        <legend><?= __('Add Category') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('description');
-            echo $this->Form->input('status');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<h2>Add Category</h2>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-5">
+        <?= $this->Form->create($category) ?>
+
+        <?php echo $this->Form->input('name', ['class' => 'form-control']); ?>
+        <br />
+        <?php echo $this->Form->input('slug', ['class' => 'form-control']); ?>
+        <br />
+        <?php echo $this->Form->input('description', ['class' => 'form-control', 'rows' => 8]); ?>
+        <br />
+        <?php echo $this->Form->input('sort', ['class' => 'form-control']); ?>
+        <br />
+        <?php echo $this->Form->input('active', ['type' => 'checkbox']); ?>
+        <br />
+        <?php echo $this->Form->button('Submit', ['class' => 'btn btn-primary']); ?>
+        <?php echo $this->Form->end(); ?>
+    </div>
 </div>
+
+<br />
+<br />
+

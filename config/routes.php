@@ -19,7 +19,9 @@
  */
 
 use Cake\Core\Plugin;
+use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 /**
  * The default class to use for all routes
@@ -39,22 +41,35 @@ use Cake\Routing\Router;
  * `:action` markers.
  *
  */
-Router::defaultRouteClass('DashedRoute');
+Router::defaultRouteClass(DashedRoute::class);
 
-Router::scope('/', function ($routes) {
+Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    // $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+
     $routes->connect('/', ['controller' => 'Products', 'action' => 'index']);
-    //$routes->connect('/login', ['controller' => 'Products', 'action' => 'index', 'login']);
+    $routes->connect('/shop/*', ['controller' => 'Products', 'action' => 'view']);
+    $routes->connect('/cart', ['controller' => 'Products', 'action' => 'cart']);
+    $routes->connect('/address', ['controller' => 'Orders', 'action' => 'address']);
+    $routes->connect('/review', ['controller' => 'Orders', 'action' => 'review']);
+    $routes->connect('/category/*', ['controller' => 'Categories', 'action' => 'view']);
+
+    $routes->connect('/sitemap.xml', ['controller' => 'Products', 'action' => 'sitemap'], ['bare' => true]);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
+    $routes->redirect('/admin', ['controller' => 'Users', 'action' => 'login'], ['status' => 301]);
+
+    /**
+     * ...and connect the rest of 'Pages' controller's URLs.
+     */
+    // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     /**
      * Connect catchall routes for all controllers.
@@ -72,14 +87,21 @@ Router::scope('/', function ($routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    $routes->fallbacks('DashedRoute');
+    $routes->fallbacks(DashedRoute::class);
 });
 
-Router::prefix('admin', function ($routes) {
+Router::prefix('admin', function($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
-    $routes->connect('/', ['controller' => 'Products', 'action' => 'index']);
-    $routes->fallbacks('InflectedRoute');
+    $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+    $routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
+});
+
+Router::prefix('api', function($routes) {
+    // $routes->resources('Visits');
+    $routes->extensions(['json', 'txt']);
+    $routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);
+    $routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);
 });
 
 /**

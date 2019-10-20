@@ -7,20 +7,11 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * Categories Model
- *
- * @property \Cake\ORM\Association\HasMany $Products
- */
 class CategoriesTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -34,36 +25,66 @@ class CategoriesTable extends Table
         $this->hasMany('Products', [
             'foreignKey' => 'category_id'
         ]);
-		
-        $this->hasMany('SubCategories', [
-            'foreignKey' => 'category_id'
-        ]);		
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
+            ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->add('name', [
+                'rule1' => [
+                    'rule' => 'notBlank',
+                    'message' => 'Please enter valid Name',
+                ],
+                'rule2' => [
+                    'rule' => 'validateUnique',
+                    'provider' => 'table',
+                    'message' => 'Name already in use',
+                ]
+            ]);
 
         $validator
-            ->allowEmpty('description');
+            ->add('slug', [
+                'rule1' => [
+                    'rule' => 'notBlank',
+                    'message' => 'Please enter valid Slug',
+                ],
+                'rule2' => [
+                    'rule' => ['custom', '/^[a-z\-]{3,50}$/'],
+                    'message' => 'Only lowercase letters and dashes, between 3-50 characters',
+                    'allowEmpty' => false,
+                    'required' => false,
+                ],
+                'rule3' => [
+                    'rule' => 'validateUnique',
+                    'provider' => 'table',
+                    'message' => 'Slug already in use',
+                ]
+            ]);
 
         $validator
-            ->add('status', 'valid', ['rule' => 'boolean'])
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->integer('sort')
+            ->allowEmpty('sort');
+
+        $validator
+            ->integer('active')
+            ->allowEmpty('active');
 
         return $validator;
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function buildRules(RulesChecker $rules)
+    {
+        return $rules;
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

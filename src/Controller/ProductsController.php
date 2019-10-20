@@ -2,157 +2,184 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
 
-/**
- * Products Controller
- *
- * @property \App\Model\Table\ProductsTable $Products
- */
 class ProductsController extends AppController
 {
-    public function beforeFilter(Event $event)
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function initialize()
     {
-        parent::beforeFilter($event);
-        $this->Auth->allow(['index', 'view', 'about', 'contact']);
+        parent::initialize();
+        $this->loadComponent('Cart');
     }
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index($cat_id=null, $sub_cat_id=null)
-    {
-    	// Set leftmenu 
-    	$this->loadModel('Categories');	
-    	$query = $this->Categories->find('all', [
-    		'contain' => ['SubCategories']
-    	]);
-		$this->set('categories', $query);
-		
-		// Set conditions
-		$conditions = array();
-		if (!empty($cat_id)) {
-			$conditions['Products.category_id'] = $cat_id;
-		}
-		if (!empty($sub_cat_id)) {
-			$conditions['Products.sub_category_id'] = $sub_cat_id;
-		}
-		    	
-        $this->paginate = [
-        	'conditions' => $conditions,
-            'contain' => ['Categories', 'SubCategories', 'Discounts' => function ($q) {
-            	return $q
-            		->where(['Discounts.start_at <' => date('Y-m-d H:i:s'), 'Discounts.end_at >' => date('Y-m-d H:i:s')])
-            		->limit(1);
-            }]
-        ];
-        $this->set('products', $this->paginate($this->Products));
-        $this->set('_serialize', ['products']);
-    }
+////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * View method
-     *
-     * @param string|null $id Product id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
+    public function sitemap()
     {
-        $product = $this->Products->get($id, [
-            'contain' => ['Categories', 'SubCategories', 'Discounts' => function ($q) {
-            	return $q
-            		->where(['Discounts.start_at <' => date('Y-m-d H:i:s'), 'Discounts.end_at >' => date('Y-m-d H:i:s')])
-            		->limit(1);
-            }]
+        $products = $this->Products->find('all', [
+            'order' => [
+                'Products.name' => 'ASC'
+            ],
+            'fields' => [
+                'Products.slug'
+            ],
+            'conditions' => [
+                'Products.active' => 1,
+            ]
         ]);
-        $this->set('product', $product);
-        $this->set('_serialize', ['product']);
-		
-		// Related products
-        $this->paginate = [
-            'contain' => ['Categories', 'SubCategories'],
-            'limit' => 5
-        ];
-        $this->set('products', $this->paginate($this->Products));
-        $this->set('_serialize', ['products']);
+        $this->set(compact('products'));
+
+        $this->response->type('xml');
+        $this->viewBuilder()->layout(false);
     }
-	
-	public function search()
-	{
-		//
-	}
 
+////////////////////////////////////////////////////////////////////////////////
 
+    public function index()
+    {
+        $this->paginate = [
+            'contain' => ['Categories'],
+            'order' => [
+                'Products.name' => 'ASC',
+            ],
+            'conditions' => [
+                'Products.active' => 1,
+            ],
+            'limit' => 12
+        ];
+        $products = $this->paginate($this->Products);
+        $this->set(compact('products'));
+    }
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
+    public function view($slug = null)
+    {
+
+        $product = $this->Products->find('all', [
+            'contain' => ['Categories'],
+            'conditions' => [
+                'Products.slug' => $slug,
+                'Products.active' => 1,
+            ]
+        ])->first();
+        if(empty($product)) {
+            return $this->redirect(['action' => 'index']);
+        }
+
+        $productoptions = $this->Products->Productoptions->find('all', [
+            'fields' => [
+                'id',
+                'name',
+                'price',
+                'weight',
+            ],
+            'conditions' => [
+                'Productoptions.product_id' => $product->id,
+                'Productoptions.name NOT LIKE' => '%Please Select%',
+            ],
+            'order' => [
+                'Productoptions.name' => 'ASC',
+            ],
+        ])->all();
+
+        $productoptionlists = [];
+        foreach($productoptions as $productoption):
+            $price = sprintf('%01.2f', $productoption->price);
+            $productoption->newprice = (float) $price;
+            $productoptionlists[$productoption->id] = $productoption->name . ' - ' . '$' . $price;
+        endforeach;
+
+        $this->set(compact('product', 'productoptions', 'productoptionlists'));
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
     public function add()
     {
-        $product = $this->Products->newEntity();
         if ($this->request->is('post')) {
-            $product = $this->Products->patchEntity($product, $this->request->data);
-            if ($this->Products->save($product)) {
-                $this->Flash->success(__('The product has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The product could not be saved. Please, try again.'));
-            }
-        }
-        $categories = $this->Products->Categories->find('list', ['limit' => 200]);
-        $subCategories = $this->Products->SubCategories->find('list', ['limit' => 200]);
-        $this->set(compact('product', 'categories', 'subCategories'));
-        $this->set('_serialize', ['product']);
-    }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Product id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $product = $this->Products->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $product = $this->Products->patchEntity($product, $this->request->data);
-            if ($this->Products->save($product)) {
-                $this->Flash->success(__('The product has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The product could not be saved. Please, try again.'));
-            }
-        }
-        $categories = $this->Products->Categories->find('list', ['limit' => 200]);
-        $subCategories = $this->Products->SubCategories->find('list', ['limit' => 200]);
-        $this->set(compact('product', 'categories', 'subCategories'));
-        $this->set('_serialize', ['product']);
-    }
+            $id = $this->request->data['id'];
+            $quantity = 1;
+            $productoptionId = isset($this->request->data['productoptionlist']) ? $this->request->data['productoptionlist'] : 0;
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Product id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $product = $this->Products->get($id);
-        if ($this->Products->delete($product)) {
-            $this->Flash->success(__('The product has been deleted.'));
+            $product = $this->Products->get($id, [
+                'contain' => []
+            ]);
+            if(empty($product)) {
+                $this->Flash->error('Invalid request');
+            } else {
+                $this->Cart->add($id, $quantity, $productoptionId);
+                $this->Flash->success($product->name . ' has been added to the shopping cart');
+            }
+
+            return $this->redirect($this->referer());
         } else {
-            $this->Flash->error(__('The product could not be deleted. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
         }
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function remove($id = null) {
+        $product = $this->Cart->remove($id);
+        if(!empty($product)) {
+            // $this->Flash->error($product['name'] . ' was removed from your shopping cart');
+        }
+        return $this->redirect(['action' => 'cart']);
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function cart()
+    {
+        $shop = $this->Cart->getcart();
+        $this->set(compact('shop'));
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function cartupdate() {
+        if ($this->request->is('post')) {
+            foreach($this->request->data as $key => $value) {
+                $a = explode('-', $key);
+                $b = explode('_', $a[1]);
+                $this->Cart->add($b[0], $value, $b[1]);
+                $this->Cart->cart();
+            }
+        }
+        return $this->redirect(['action' => 'cart']);
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function itemupdate() {
+        if ($this->request->is('ajax')) {
+            $id = $this->request->data['id'];
+            $quantity = isset($this->request->data['quantity']) ? $this->request->data['quantity'] : 1;
+            if(isset($this->request->data['mods']) && ($this->request->data['mods'] > 0)) {
+                $productmodId = $this->request->data['mods'];
+            } else {
+                $productmodId = 0;
+            }
+            $product = $this->Cart->add($id, $quantity, $productmodId);
+        }
+        $cart = $this->Cart->getcart();
+        echo json_encode($cart);
+        die;
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function clear()
+    {
+        $this->Cart->clear();
+        $this->Flash->success('The shopping cart is cleared');
         return $this->redirect(['action' => 'index']);
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

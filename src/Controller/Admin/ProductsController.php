@@ -3,49 +3,54 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
-/**
- * Products Controller
- *
- * @property \App\Model\Table\ProductsTable $Products
- */
 class ProductsController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Categories', 'SubCategories']
+            'contain' => ['Categories'],
+            'order' => [
+                'Products.name' => 'ASC'
+            ],
+            'limit' => 150
         ];
-        $this->set('products', $this->paginate($this->Products));
+        $products = $this->paginate($this->Products);
+
+        $this->set(compact('products'));
         $this->set('_serialize', ['products']);
+
+        $categories1 = $this->Products->Categories->find('list', [
+            'order' => [
+                'Categories.name' => 'ASC',
+            ]
+        ])->toArray();
+        foreach ($categories1 as $key => $value) {
+            $categories[] = [
+                'value' => $key,
+                'text' => $value,
+            ];
+        }
+        $this->set(compact('categories'));
+
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Product id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function view($id = null)
     {
         $product = $this->Products->get($id, [
-            'contain' => ['Categories', 'SubCategories', 'Carts', 'Discounts', 'Purchases']
+            'contain' => ['Categories', 'Productoptions']
         ]);
-        $this->set('product', $product);
+
+        $this->set(compact('product'));
         $this->set('_serialize', ['product']);
     }
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function add()
     {
         $product = $this->Products->newEntity();
@@ -59,18 +64,12 @@ class ProductsController extends AppController
             }
         }
         $categories = $this->Products->Categories->find('list', ['limit' => 200]);
-        $subCategories = $this->Products->SubCategories->find('list', ['limit' => 200]);
-        $this->set(compact('product', 'categories', 'subCategories'));
+        $this->set(compact('product', 'categories'));
         $this->set('_serialize', ['product']);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Product id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function edit($id = null)
     {
         $product = $this->Products->get($id, [
@@ -86,18 +85,12 @@ class ProductsController extends AppController
             }
         }
         $categories = $this->Products->Categories->find('list', ['limit' => 200]);
-        $subCategories = $this->Products->SubCategories->find('list', ['limit' => 200]);
-        $this->set(compact('product', 'categories', 'subCategories'));
+        $this->set(compact('product', 'categories'));
         $this->set('_serialize', ['product']);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Product id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -109,4 +102,7 @@ class ProductsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

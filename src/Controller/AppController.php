@@ -1,135 +1,157 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link      http://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
- */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\I18n\Time;
+// use Cake\ORM\Table;
+// use Cake\ORM\TableRegistry;
 
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @link http://book.cakephp.org/3.0/en/controllers.html#the-app-controller
- */
-class AppController extends Controller
-{
-	
-	public $helpers = [
-	    'Html' => [
-	        'className' => 'Bootstrap.BootstrapHtml'
-	    ],
-	    'Form' => [
-	        'className' => 'Bootstrap.BootstrapForm'
-	    ],
-	    'Paginator' => [
-	        'className' => 'Bootstrap.BootstrapPaginator'
-	    ],
-	    'Modal' => [
-	        'className' => 'Bootstrap.BootstrapModal'
-	    ]
-	];
+class AppController extends Controller {
 
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * e.g. `$this->loadComponent('Security');`
-     *
-     * @return void
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     public function initialize()
     {
-        parent::initialize();
-
         $this->loadComponent('RequestHandler');
+        $this->loadComponent('Cookie');
         $this->loadComponent('Flash');
-	    $this->loadComponent('Auth', [
-	        //'authorize'=> 'Controller',//added this line
-	        'authenticate' => [
-	            'Form' => [
-	                'fields' => [
-	                    'username' => 'email',
-	                    'password' => 'password'
-	                ]
-	            ]
-	        ],
-	        'loginAction' => [
-	            'controller' => 'Users',
-	            'action' => 'login'
-	        ],
-			'logoutRedirect' => [
-				'controller' => 'Products',
-				'action'	 => 'index',
-			]	        
-	        //'unauthorizedRedirect' => $this->referer()
-	    ]);
-
-		
-/*
-		$this->loadComponent('Auth', [
-			// 'authorize' 	 => ['Controller'], // Added this line
-            'authenticate'   =>[
+        $this->loadComponent('Auth', [
+            'loginAction' => [
+                'controller' => 'users',
+                'action' => 'login',
+                'prefix' => false,
+            ],
+            'authError' => 'Did you really think you are allowed to see that?',
+            'unauthorizedRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'authenticate' => [
                 'Form' => [
-                'fields' => ['username' => 'email','password'=>'password']
-               ]
-            ],			
-			'loginRedirect'  => [
-				'controller' => 'Products',
-				'action'	 => 'index',
-				'home'
-			],
-			'logoutRedirect' => [
-				'controller' => 'Products',
-				'action'	 => 'index',
-				'home'
-			]
-		]);*/
-
+                    'fields' => ['username' => 'email'],
+                    'scope' => ['Users.active' => 1],
+                ]
+            ],
+            'authorize' => ['Controller']
+        ]);
     }
 
-    /**
-     * Before render callback.
-     *
-     * @param \Cake\Event\Event $event The beforeRender event.
-     * @return void
-     */
-    public function beforeRender(Event $event)
+////////////////////////////////////////////////////////////////////////////////
+
+    protected $secureActions = [
+        // 'cart',
+        'address',
+        'review',
+    ];
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function beforeFilter(Event $event)
     {
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
-            $this->set('_serialize', true);
-        }
-    }
-	
-	public function beforeFilter(Event $event)
-	{
-		if (isset($this->request->params['prefix']) == 'admin') {
-			if ($authUser = $this->Auth->user()) {
-        		$this->viewBuilder()->layout('admin');
-			}
-		} else {
-			$authUser = $this->Auth->user();
-        	$this->viewBuilder()->layout('frontend');
-		}
 
-		$this->Auth->allow(['login', 'account']);
-	    $this->set(compact('authUser'));
-	}
+        // if (in_array($this->request->params['action'], $this->secureActions) && !isset($_SERVER['HTTPS'])) {
+        //     $this->protocol('https');
+        // }
+
+        // if (!in_array($this->request->params['action'], $this->secureActions) && isset($_SERVER['HTTPS'])) {
+        //     $this->protocol('http');
+        // }
+
+        $authuser = $this->Auth->user();
+        $this->set(compact('authuser'));
+
+        if(isset($this->request->params['prefix']) && ($this->request->params['prefix'] == 'admin')) {
+            $this->viewBuilder()->layout('admin');
+        } elseif(isset($this->request->params['prefix']) && ($this->request->params['prefix'] == 'user')) {
+            $this->viewBuilder()->layout('user');
+        } else {
+            $this->Auth->allow();
+            if(!$this->request->session()->check('referer')) {
+                $this->request->session()->write('referer', env('HTTP_REFERER'));
+            }
+        }
+
+        Time::setToStringFormat('YYYY-MM-dd HH:mm:ss');
+
+        if(!$this->Cookie->read('referer_cookie')) {
+            $this->Cookie->write('referer_cookie', env('HTTP_REFERER'));
+        }
+
+        if(!$this->request->session()->read('referer_session')) {
+            $this->request->session()->write('referer_session', env('HTTP_REFERER'));
+        }
+
+        if(!$this->Cookie->read('request_uri')) {
+            $this->Cookie->write('request_uri', $this->request->here());
+        }
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    // public function protocol($protocol = 'http') {
+    //     return $this->redirect($protocol . '://' . $_SERVER['SERVER_NAME'] . $this->request->here, 301);
+    // }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function isAuthorized($user)
+    {
+        if (($this->request->params['prefix'] === 'admin') && ($user['role'] != 'admin')) {
+            echo '<a href="/users/logout">Logout</a><br />';
+            die('Invalid request for '. $user['role'] . ' user.');
+        }
+        if (($this->request->params['prefix'] === 'user') && ($user['role'] != 'user')) {
+            echo '<a href="/users/logout">Logout</a><br />';
+            die('Invalid request for '. $user['role'] . ' user.');
+        }
+        return true;
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function toggle($field = null, $id = null)
+    {
+
+        $model = $this->modelClass;
+
+        if ($this->$model && $field && $id) {
+            $expression = new \Cake\Database\Expression\QueryExpression($field . ' = 1 - '. $field);
+            $this->$model->updateAll([$expression], ['id' => $id]);
+        }
+
+        $this->autoRender = false;
+
+        if (!$this->request->is('ajax')) {
+            return $this->redirect($this->referer());
+        }
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function editable()
+    {
+
+        $data = [
+            $this->request->data['name'] => trim($this->request->data['value']),
+        ];
+
+        $results = \Cake\ORM\TableRegistry::get($this->modelClass);
+        $result = $results->get($this->request->data['pk']);
+        $results->patchEntity($result, $data);
+        $results->save($result);
+
+        $this->autoRender = false;
+
+        if (!$this->request->is('ajax')) {
+            return $this->redirect($this->referer());
+        }
+
+    }
+
+////////////////////////////////////////////////////////////////////////////////
 
 }

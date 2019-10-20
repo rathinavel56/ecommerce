@@ -1,50 +1,41 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
-/**
- * User Entity.
- *
- * @property int $id
- * @property string $email
- * @property string $password
- * @property string $first_name
- * @property string $last_name
- * @property string $company_name
- * @property string $avatar
- * @property \Cake\I18n\Time $birth_date
- * @property string $address
- * @property string $address2
- * @property string $city
- * @property int $zip
- * @property string $country
- * @property string $phone
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
- * @property int $role
- * @property bool $status
- */
 class User extends Entity
 {
 
-    /**
-     * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
-     *
-     * @var array
-     */
+////////////////////////////////////////////////////////////////////////////////
+
     protected $_accessible = [
-        '*' => true,
-        'id' => false,
+        'role' => true,
+        'first_name' => true,
+        'last_name' => true,
+        'phone' => true,
+        'email' => true,
+        'password' => true,
+        'uuid' => true,
+        'active' => true,
+        'login_count' => true,
+        'login_last' => true,
     ];
-	
-	protected function _setPassword($value) {
-		$hasher = new DefaultPasswordHasher();
-		return $hasher->hash($value);
-	}
+
+////////////////////////////////////////////////////////////////////////////////
+
+    protected function _getName()
+    {
+        return $this->_properties['first_name'] . '  ' . $this->_properties['last_name'];
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    protected function _setPassword($password)
+    {
+        return (new DefaultPasswordHasher)->hash($password);
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }

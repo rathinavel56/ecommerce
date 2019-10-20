@@ -2,114 +2,135 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 
-/**
- * Orders Controller
- *
- * @property \App\Model\Table\OrdersTable $Orders
- */
 class OrdersController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return void
-     */
-    public function index()
+////////////////////////////////////////////////////////////////////////////////
+
+    public function initialize()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $this->set('orders', $this->paginate($this->Orders));
-        $this->set('_serialize', ['orders']);
+        parent::initialize();
+        $this->loadComponent('Cart');
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Order id.
-     * @return void
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $order = $this->Orders->get($id, [
-            'contain' => ['Users', 'Purchases']
-        ]);
-        $this->set('order', $order);
-        $this->set('_serialize', ['order']);
-    }
-	
-	public function checkout()
-	{
-		//
-	}
+////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * Add method
-     *
-     * @return void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+    public function address()
     {
+        $shop = $this->Cart->getcart();
+        if(!$shop['Order']['total']) {
+            return $this->redirect('/');
+        }
+
         $order = $this->Orders->newEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->data);
-            if ($this->Orders->save($order)) {
-                $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The order could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Orders->Users->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'users'));
-        $this->set('_serialize', ['order']);
-    }
+            if (!$order->errors()) {
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Order id.
-     * @return void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $order = $this->Orders->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $order = $this->Orders->patchEntity($order, $this->request->data);
-            if ($this->Orders->save($order)) {
-                $this->Flash->success(__('The order has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The order could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Orders->Users->find('list', ['limit' => 200]);
-        $this->set(compact('order', 'users'));
-        $this->set('_serialize', ['order']);
-    }
+                $order = $this->request->data;
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Order id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $order = $this->Orders->get($id);
-        if ($this->Orders->delete($order)) {
-            $this->Flash->success(__('The order has been deleted.'));
+                if($order['shipping_state'] == 'CA') {
+                    $order['tax'] = sprintf('%01.2f', $shop['Order']['subtotal'] * 0.095);
+                    $order['total'] = sprintf('%01.2f', $shop['Order']['subtotal'] + $order['tax']);
+                } else {
+                    $order['tax'] = 0;
+                    $order['total'] = $shop['Order']['subtotal'];
+                }
+
+                $this->request->session()->write('Shop.Order', $order + $shop['Order']);
+                return $this->redirect(['action' => 'review']);
+            } else {
+                $this->Flash->error('The form could not be saved. Please, try again.');
+            }
         } else {
-            $this->Flash->error(__('The order could not be deleted. Please, try again.'));
+            if(!empty($shop['Order'])) {
+                $this->request->data = $shop['Order'];
+            }
         }
-        return $this->redirect(['action' => 'index']);
+        $this->set(compact('order'));
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function review()
+    {
+        $shop = $this->Cart->getcart();
+        if(!$shop['Order']['total']) {
+            return $this->redirect('/');
+        }
+        $this->set(compact('shop'));
+
+        $order = $this->Orders->newEntity($shop['Order']);
+
+        if ($this->request->is('post')) {
+
+            $order = $this->Orders->patchEntity($order, $this->request->data, ['validate' => 'review']);
+
+            $order->ip_address = $this->request->clientIp();
+            $order->remote_host = gethostbyaddr(env('REMOTE_ADDR'));
+            $order->referer_cookie = $this->Cookie->read('referer_cookie');
+            $order->referer_session = $this->request->session()->read('referer_session');
+            $order->request_uri = $this->Cookie->read('request_uri');
+
+            $order->creditcard_number = substr($this->request->data['creditcard_number'], 0, 12);
+
+            $ordersave = $this->Orders->save($order);
+
+            if ($ordersave) {
+
+                $orderproducts = $this->Orders->Orderproducts->newEntities($shop['Orderproducts']);
+
+                foreach ($orderproducts as $orderproduct) {
+                    $orderproduct['order_id'] = $ordersave->id;
+                    $this->Orders->Orderproducts->save($orderproduct);
+                }
+
+                $email = new Email();
+
+                $email->from(['info@domain.com' => 'domain'])
+                    ->transport('default')
+                    ->sender('info@domain.com', 'domain')
+                    ->domain('www.domain.com')
+                    ->emailFormat('html')
+                    ->to('info@domain.com')
+                    ->subject('Website Order')
+                    ->template('order', 'default')
+                    ->viewVars(['shop' => $shop, 'order' => $order])
+                    ->send();
+
+                $email->from(['web@domain.com' => 'domain'])
+                    ->transport('default')
+                    ->sender('web@domain.com', 'domain')
+                    ->domain('www.domain.com')
+                    ->emailFormat('html')
+                    ->to($order->email)
+                    ->subject('Website Order')
+                    ->template('order', 'default')
+                    ->viewVars(['shop' => $shop, 'order' => $order])
+                    ->send();
+
+                return $this->redirect(['action' => 'success']);
+            } else {
+                $this->Flash->error('The order could not be placed. Please, try again.');
+            }
+        }
+        $this->set(compact('order'));
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
+    public function success()
+    {
+        $shop = $this->Cart->getcart();
+        $this->Cart->clear();
+        if(empty($shop)) {
+            return $this->redirect('/');
+        }
+        $this->set(compact('shop'));
+    }
+
+////////////////////////////////////////////////////////////////////////////////
+
 }
