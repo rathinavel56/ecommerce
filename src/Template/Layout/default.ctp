@@ -1,5 +1,6 @@
 <?php
 use Cake\Routing\Router; 
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";
 ?>
 <!doctype html>
 <html dir="ltr" lang="en">
@@ -21,23 +22,23 @@ use Cake\Routing\Router;
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 
     <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/icon-line/css/simple-line-icons.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/icon-line/css/simple-line-icons.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/icon-line-pro/style.css">
 
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/icon-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/icon-hs/style.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/chosen/chosen.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/slick-carousel/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/vendor/master-slider/source/assets/css/masterslider.main.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/chosen/chosen.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/master-slider/source/assets/css/masterslider.main.css">
 
     <!-- CSS Template -->
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/css/styles.op-real-estate.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/css/styles.op-real-estate.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="<?php echo Router::url('/');?>/assets/css/custom.css">
+    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/css/custom.css">
 </head>
 <body>
 <main class="g-pt-110 g-pt-120--md g-pt-170--lg">
@@ -54,7 +55,7 @@ use Cake\Routing\Router;
                 <!-- Logo -->
                 <a href="#" class="js-go-to navbar-brand"
                    data-type="static">
-                  <img class="img-fluid g-width-150" src="<?php echo Router::url('/');?>/assets/img/logo.png" alt="Logo">
+                  <img class="img-fluid g-width-150" src="<?php echo $actual_link;?>assets/img/logo.png" alt="Logo">
                 </a>
                 <!-- End Logo -->
               </div>
@@ -152,8 +153,8 @@ use Cake\Routing\Router;
       <section id="home">
         <div class="master-slider ms-promo-2" id="promoSlider">
           <div class="ms-slide">
-            <img src="<?php echo Router::url('/');?>/assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo Router::url('/');?>/assets/img-temp/1920x1280/img1.jpg">
+            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
+                 data-src="<?php echo $actual_link;?>assets/img-temp/1920x1280/img1.jpg">
 
             <div class="ms-layer text-center g-absolute-centered g-max-width-550"
                  data-origin="ml"
@@ -169,12 +170,12 @@ use Cake\Routing\Router;
               <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#">Learn more</a>
             </div>
 
-            <img class="ms-thumb" src="<?php echo Router::url('/');?>/assets/img-temp/200x150/img1.jpg" alt="Image description">
+            <img class="ms-thumb" src="<?php echo $actual_link;?>assets/img-temp/200x150/img1.jpg" alt="Image description">
           </div>
 
           <div class="ms-slide">
-            <img src="<?php echo Router::url('/');?>/assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo Router::url('/');?>/assets/img-temp/1920x1280/img2.jpg">
+            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
+                 data-src="<?php echo $actual_link;?>assets/img-temp/1920x1280/img2.jpg">
 
             <div class="ms-layer text-center g-absolute-centered g-max-width-550"
                  data-origin="ml"
@@ -190,12 +191,12 @@ use Cake\Routing\Router;
               <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#">Learn more</a>
             </div>
 
-            <img class="ms-thumb" src="<?php echo Router::url('/');?>/assets/img-temp/200x150/img2.jpg" alt="Image description">
+            <img class="ms-thumb" src="<?php echo $actual_link;?>assets/img-temp/200x150/img2.jpg" alt="Image description">
           </div>
 
           <div class="ms-slide">
-            <img src="<?php echo Router::url('/');?>/assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo Router::url('/');?>/assets/img-temp/1920x1280/img3.jpg">
+            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
+                 data-src="<?php echo $actual_link;?>assets/img-temp/1920x1280/img3.jpg">
 
             <div class="ms-layer text-center g-absolute-centered g-max-width-550"
                  data-origin="ml"
@@ -211,12 +212,12 @@ use Cake\Routing\Router;
               <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#">Learn more</a>
             </div>
 
-            <img class="ms-thumb" src="<?php echo Router::url('/');?>/assets/img-temp/200x150/img3.jpg" alt="Image description">
+            <img class="ms-thumb" src="<?php echo $actual_link;?>assets/img-temp/200x150/img3.jpg" alt="Image description">
           </div>
 
           <div class="ms-slide">
-            <img src="<?php echo Router::url('/');?>/assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo Router::url('/');?>/assets/img-temp/1920x1280/img4.jpg">
+            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
+                 data-src="<?php echo $actual_link;?>assets/img-temp/1920x1280/img4.jpg">
 
             <div class="ms-layer text-center g-absolute-centered g-max-width-550"
                  data-origin="ml"
@@ -232,12 +233,12 @@ use Cake\Routing\Router;
               <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#">Learn more</a>
             </div>
 
-            <img class="ms-thumb" src="<?php echo Router::url('/');?>/assets/img-temp/200x150/img4.jpg" alt="Image description">
+            <img class="ms-thumb" src="<?php echo $actual_link;?>assets/img-temp/200x150/img4.jpg" alt="Image description">
           </div>
 
           <div class="ms-slide">
-            <img src="<?php echo Router::url('/');?>/assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo Router::url('/');?>/assets/img-temp/1920x1280/img5.jpg">
+            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
+                 data-src="<?php echo $actual_link;?>assets/img-temp/1920x1280/img5.jpg">
 
             <div class="ms-layer text-center g-absolute-centered g-max-width-550"
                  data-origin="ml"
@@ -253,7 +254,7 @@ use Cake\Routing\Router;
               <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#">Learn more</a>
             </div>
 
-            <img class="ms-thumb" src="<?php echo Router::url('/');?>/assets/img-temp/200x150/img5.jpg" alt="Image description">
+            <img class="ms-thumb" src="<?php echo $actual_link;?>assets/img-temp/200x150/img5.jpg" alt="Image description">
           </div>
         </div>
       </section>
@@ -276,7 +277,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="row g-bg-secondary mx-0">
                 <div class="col-md-6 col-lg-7 g-bg-size-cover g-min-height-250"
-                     data-bg-img-src="<?php echo Router::url('/');?>/assets/img-temp/800x460/img1.jpg"></div>
+                     data-bg-img-src="<?php echo $actual_link;?>assets/img-temp/800x460/img1.jpg"></div>
 
                 <div class="col-md-6 col-lg-5 g-pa-30">
                   <!-- Article Header -->
@@ -333,7 +334,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="row g-bg-secondary mx-0">
                 <div class="col-md-6 col-lg-7 g-bg-size-cover g-min-height-250"
-                     data-bg-img-src="<?php echo Router::url('/');?>/assets/img-temp/800x460/img2.jpg"></div>
+                     data-bg-img-src="<?php echo $actual_link;?>assets/img-temp/800x460/img2.jpg"></div>
 
                 <div class="col-md-6 col-lg-5 g-pa-30">
                   <!-- Article Header -->
@@ -406,7 +407,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img1.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img1.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-green g-py-3 g-px-7">For rent</div>
@@ -468,7 +469,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img2.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img2.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-primary g-py-3 g-px-7">For sale</div>
@@ -527,7 +528,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img3.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img3.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-green g-py-3 g-px-7">For rent</div>
@@ -589,7 +590,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img4.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img4.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-green g-py-3 g-px-7">For rent</div>
@@ -651,7 +652,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img5.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img5.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-primary g-py-3 g-px-7">For sale</div>
@@ -710,7 +711,7 @@ use Cake\Routing\Router;
               <!-- Article -->
               <article class="g-pos-rel">
                 <!-- Article Image -->
-                <img class="w-100 d-block g-rounded-top-5" src="<?php echo Router::url('/');?>/assets/img-temp/800x541/img6.jpg" alt="Image description">
+                <img class="w-100 d-block g-rounded-top-5" src="<?php echo $actual_link;?>assets/img-temp/800x541/img6.jpg" alt="Image description">
                 <!-- End Article Image -->
 
                 <div class="u-ribbon u-ribbon--left u-ribbon-v1 rounded text-uppercase g-top-20 g-left-20 g-font-weight-700 g-font-size-9 g-color-white g-bg-green g-py-3 g-px-7">For rent</div>
@@ -787,7 +788,7 @@ use Cake\Routing\Router;
               <!-- Figure -->
               <figure>
                 <!-- Figure Image -->
-                <img class="w-100 g-mb-35" src="<?php echo Router::url('/');?>/assets/img-temp/400x667/img1.jpg" alt="Image description">
+                <img class="w-100 g-mb-35" src="<?php echo $actual_link;?>assets/img-temp/400x667/img1.jpg" alt="Image description">
                 <!-- End Figure Image -->
 
                 <!-- Figure Info -->
@@ -815,7 +816,7 @@ use Cake\Routing\Router;
               <!-- Figure -->
               <figure>
                 <!-- Figure Image -->
-                <img class="w-100 g-mb-35" src="<?php echo Router::url('/');?>/assets/img-temp/400x667/img2.jpg" alt="Image description">
+                <img class="w-100 g-mb-35" src="<?php echo $actual_link;?>assets/img-temp/400x667/img2.jpg" alt="Image description">
                 <!-- End Figure Image -->
 
                 <!-- Figure Info -->
@@ -843,7 +844,7 @@ use Cake\Routing\Router;
               <!-- Figure -->
               <figure>
                 <!-- Figure Image -->
-                <img class="w-100 g-mb-35" src="<?php echo Router::url('/');?>/assets/img-temp/400x667/img3.jpg" alt="Image description">
+                <img class="w-100 g-mb-35" src="<?php echo $actual_link;?>assets/img-temp/400x667/img3.jpg" alt="Image description">
                 <!-- End Figure Image -->
 
                 <!-- Figure Info -->
@@ -871,7 +872,7 @@ use Cake\Routing\Router;
               <!-- Figure -->
               <figure>
                 <!-- Figure Image -->
-                <img class="w-100 g-mb-35" src="<?php echo Router::url('/');?>/assets/img-temp/400x667/img4.jpg" alt="Image description">
+                <img class="w-100 g-mb-35" src="<?php echo $actual_link;?>assets/img-temp/400x667/img4.jpg" alt="Image description">
                 <!-- End Figure Image -->
 
                 <!-- Figure Info -->
@@ -913,7 +914,7 @@ use Cake\Routing\Router;
                data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-0">
             <div class="js-slide">
               <!-- Testimonial Block -->
-              <img class="img-fluid g-width-130 g-rounded-6 mx-auto g-mb-30" src="<?php echo Router::url('/');?>/assets/img-temp/130x130/img1.jpg" alt="Image description">
+              <img class="img-fluid g-width-130 g-rounded-6 mx-auto g-mb-30" src="<?php echo $actual_link;?>assets/img-temp/130x130/img1.jpg" alt="Image description">
               <h4 class="h6 text-uppercase g-font-weight-700 g-mb-20">Spencer's Family</h4>
               <blockquote class="g-color-gray-dark-v5 mb-0">Ut augue diam, lacinia fringilla erat eu, vehicula commodo quam. Aliquam eget accumsan ligula. Maecenas sit amet consectetur lectus. Suspendisse commodo et magna non pulvinar. Quisque et ultricies sem, et vulputate dui. Morbi aliquam leo id ipsum tempus mollis.</blockquote>
               <!-- End Testimonial Block -->
@@ -921,7 +922,7 @@ use Cake\Routing\Router;
 
             <div class="js-slide">
               <!-- Testimonial Block -->
-              <img class="img-fluid g-width-130 g-rounded-6 mx-auto g-mb-30" src="<?php echo Router::url('/');?>/assets/img-temp/130x130/img2.jpg" alt="Image description">
+              <img class="img-fluid g-width-130 g-rounded-6 mx-auto g-mb-30" src="<?php echo $actual_link;?>assets/img-temp/130x130/img2.jpg" alt="Image description">
               <h4 class="h6 text-uppercase g-font-weight-700 g-mb-20">Melani Shnaider</h4>
               <blockquote class="g-color-gray-dark-v5 mb-0">Ut augue diam, lacinia fringilla erat eu, vehicula commodo quam. Aliquam eget accumsan ligula. Morbi aliquam leo id ipsum tempus mollis.</blockquote>
               <!-- End Testimonial Block -->
@@ -972,7 +973,7 @@ use Cake\Routing\Router;
         <div class="g-pt-70 g-pb-40">
           <div class="container">
             <a class="d-block g-width-200 g-opacity-0_3 g-mb-30 mx-auto" href="https://htmlstream.com/">
-              <img class="img-fluid" src="<?php echo Router::url('/');?>/assets/img/logo-foot.png" alt="Logo">
+              <img class="img-fluid" src="<?php echo $actual_link;?>assets/img/logo-foot.png" alt="Logo">
             </a>
 
             <ul class="list-inline g-mb-20">
@@ -1023,27 +1024,27 @@ use Cake\Routing\Router;
     </main>
 
     <!-- JS Global Compulsory -->
-    <script src="<?php echo Router::url('/');?>/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/vendor/popper.js/popper.min.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/popper.js/popper.min.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/bootstrap/bootstrap.min.js"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="<?php echo Router::url('/');?>/assets/vendor/appear.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/vendor/slick-carousel/slick/slick.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/vendor/master-slider/source/assets/js/masterslider.min.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/appear.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/slick-carousel/slick/slick.js"></script>
+    <script src="<?php echo $actual_link;?>assets/vendor/master-slider/source/assets/js/masterslider.min.js"></script>
 
     <!-- JS Unify -->
-    <script src="<?php echo Router::url('/');?>/assets/js/hs.core.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/components/hs.header.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/helpers/hs.hamburgers.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/components/hs.scroll-nav.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/components/hs.rating.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/components/hs.carousel.js"></script>
-    <script src="<?php echo Router::url('/');?>/assets/js/components/hs.go-to.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/hs.core.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/components/hs.header.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/helpers/hs.hamburgers.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/components/hs.scroll-nav.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/components/hs.rating.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/components/hs.carousel.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->
-    <script src="<?php echo Router::url('/');?>/assets/js/custom.js"></script>
+    <script src="<?php echo $actual_link;?>assets/js/custom.js"></script>
 
     <!-- JS Plugins Init. -->
     <script>
