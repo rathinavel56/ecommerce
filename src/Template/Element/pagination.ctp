@@ -1,7 +1,6 @@
-<nav aria-label="Page navigation">
-    <ul class="pagination pagination-sm">
+<nav aria-label="Page navigation" class="fullwidth">
+    <ul class="pagination">
         <?php
-
         $this->Paginator->templates([
             'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>'
         ]);
@@ -37,16 +36,12 @@
         $this->Paginator->templates([
             'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>'
         ]);
-
-        ?>
-
-        <?php echo $this->Paginator->first('<< First'); ?>
-        <?php echo $this->Paginator->prev('< Prev'); ?>
-        <?php echo $this->Paginator->numbers(['last' => 1]); ?>
-        <?php echo $this->Paginator->next('Next >'); ?>
-        <?php echo $this->Paginator->last('Last >>'); ?>
-
+		echo $this->Paginator->first('<<  First');
+        echo $this->Paginator->prev('<  Prev');
+        echo $this->Paginator->numbers(['last' => 1]);
+        echo $this->Paginator->next('Next  >');
+        echo $this->Paginator->last('Last  >>');
+	?>
     </ul>
 </nav>
-
-<p><?= $this->Paginator->counter('Page {{page}} of {{pages}}, showing {{current}} records out of {{count}} total, starting on record {{start}}, ending on {{end}}'); ?></p>
+<?php //echo $this->Paginator->counter('Page {{page}} of {{pages}}'); ?>

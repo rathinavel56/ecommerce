@@ -52,6 +52,22 @@ class ProductsController extends AppController
         $products = $this->paginate($this->Products);
         $this->set(compact('products'));
     }
+	
+	public function home()
+    {
+        $this->paginate = [
+            'contain' => ['Categories'],
+            'order' => [
+                'Products.name' => 'ASC',
+            ],
+            'conditions' => [
+                'Products.active' => 1,
+            ],
+            'limit' => 12
+        ];
+        $products = $this->paginate($this->Products);
+        $this->set(compact('products'));
+    }
 
 ////////////////////////////////////////////////////////////////////////////////
 
