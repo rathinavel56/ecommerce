@@ -5,7 +5,7 @@ use Cake\Routing\Router;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ADMIN<?php // echo $title_for_layout; ?></title>
+<title>ADMIN</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -15,13 +15,10 @@ use Cake\Routing\Router;
 
 <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 
-<link rel="stylesheet" type="text/css" href="<?php echo Router::url('/');?>css/admin.css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="<?php echo Router::url('/');?>/ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<!-- <script type="text/javascript" src="<?php echo Router::url('/');?>/maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script> -->
-
 <script src="<?php echo Router::url('/');?>js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo Router::url('/');?>js/admin.js"></script>
 
@@ -57,28 +54,20 @@ $(document).ready(function() {
         <div class="collapse navbar-collapse" id="navbarCollapse">
 
             <ul class="navbar-nav mr-auto">
-
-
                 <li class="nav-item"><?php echo $this->Html->link('Users', ['controller' => 'users', 'action' => 'index'], ['class' => 'nav-link']); ?></li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pumps</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <?php echo $this->Html->link('Shop Categories', array('controller' => 'categories', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
-                        <?php echo $this->Html->link('Shop Products', array('controller' => 'products', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
-                        <?php echo $this->Html->link('Shop Products Options', array('controller' => 'productoptions', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
-                        <?php echo $this->Html->link('Shop Orders', array('controller' => 'orders', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
+                        <?php echo $this->Html->link('Categories', array('controller' => 'categories', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
+                        <?php echo $this->Html->link('Products', array('controller' => 'products', 'action' => 'index'), ['class' => 'dropdown-item']); ?>
                     </div>
                 </li>
             </ul>
 
             <div class="my-0 my-lg-0">
-
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-
                         <a href="#" class="nav-link dropdown-toggle" id="dropdown05" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
-
                         <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdown05">
                             <a class="dropdown-item" href="<?php echo Router::url('/');?>users/logout"><i class="fa fa-fw fa-power-off"></i> Logout</a>
                         </div>
@@ -88,7 +77,7 @@ $(document).ready(function() {
         </div>
     </nav>
 
-    <div class="content">
+    <div class="content" style="padding:20px;">
         <?= $this->Flash->render(); ?>
         <?php echo $this->fetch('content'); ?>
     </div>

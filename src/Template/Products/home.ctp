@@ -209,13 +209,13 @@
 					  <div class="g-overflow-hidden g-mb-15">
 						<ul class="list-inline text-center g-font-size-12 g-color-gray-dark-v5 g-brd-top g-brd-bottom g-brd-gray-light-v3 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-pa-12-5-7 mx-0 g-my-5">
-							<i class="icon-hotel-restaurant-022 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> 4
+							<i class="icon-hotel-restaurant-022 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> Electric
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							<i class="icon-hotel-restaurant-158 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> 2
+							<i class="icon-hotel-restaurant-158 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> 220 to 240V
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							<i class="icon-real-estate-017 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> 130 sqft
+							<i class="icon-real-estate-017 align-middle u-line-icon-pro g-font-size-18 g-mr-5"></i> 1 to 100 HP
 						  </li>
 						</ul>
 					  </div>
@@ -224,14 +224,12 @@
 					  <!-- Article Footer -->
 					  <footer class="d-flex justify-content-between align-items-center w-100 text-uppercase">
 						<div class="align-middle">
-						  <div class="js-rating d-block d-md-inline-block g-color-primary g-font-size-12 g-mr-5"
-							   data-rating="3.5"></div>
-						  <a class="g-color-gray-dark-v5 g-color-primary--hover g-text-underline--none--hover g-font-size-10" href="#">12 Reviews</a>
+						  Cast Iron
 						</div>
 
 						<div class="align-middle g-font-size-18 g-font-weight-700 text-right g-letter-spacing-1">
-						  $3.500
-						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ per month</em>
+						  <i class="fa fa-inr"></i> 76,000
+						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ Unit</em>
 						</div>
 					  </footer>
 					  <!-- End Article Footer -->

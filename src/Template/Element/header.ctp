@@ -20,7 +20,7 @@
                     <div class="text-right text-sm-left g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25">+469 548 521</strong>
+                      <strong class="d-block g-pl-25">+918048878227</strong>
                     </div>
                   </div>
 
@@ -71,7 +71,7 @@
                       <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
-                    <a href="#ourProducts" class="nav-link g-color-primary--hover p-0">Gallery</a>
+                    <a href="#ourProducts" class="nav-link g-color-primary--hover p-0">Pumps</a>
                   </li>
                   <li class="nav-item g-ml-10--lg g-ml-15--xl">
                     <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact</a>

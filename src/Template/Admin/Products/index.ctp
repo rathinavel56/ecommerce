@@ -1,3 +1,12 @@
+<br />
+<br />
+
+<h3>Actions</h3>
+
+<?php echo $this->Html->link('New', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+
+<br />
+<br />
 <script>
 
 $(document).ready(function() {
@@ -47,7 +56,6 @@ $(document).ready(function() {
     <thead>
         <tr>
             <th><?= $this->Paginator->sort('id') ?></th>
-            <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('category_id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('slug') ?></th>
@@ -61,7 +69,6 @@ $(document).ready(function() {
         <?php foreach ($products as $product): ?>
             <tr>
                 <td><?= $this->Number->format($product->id) ?></td>
-                <td><img src="/images/products/<?php echo $product->image; ?>" class="img-fluid" width="80"></td>
                 <td><span class="category_id" data-value="<?php echo $product->category_id; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->category->name; ?></span></td>
                 <td><span class="name" data-value="<?php echo $product->name; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->name; ?></span></td>
                 <td><span class="slug" data-value="<?php echo $product->slug; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->slug; ?></span></td>
@@ -80,13 +87,3 @@ $(document).ready(function() {
 <br />
 
 <?php echo $this->element('pagination'); ?>
-
-<br />
-<br />
-
-<h3>Actions</h3>
-
-<?php echo $this->Html->link('New', ['action' => 'add'], ['class' => 'btn btn-default']) ?>
-
-<br />
-<br />
