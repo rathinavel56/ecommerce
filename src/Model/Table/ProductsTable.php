@@ -31,6 +31,9 @@ class ProductsTable extends Table
         $this->hasMany('Productoptions', [
             'foreignKey' => 'product_id'
         ]);
+		$this->hasMany('Attachments', [
+            'foreignKey' => 'foreign_id'
+        ]);
     }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,11 +49,6 @@ class ProductsTable extends Table
                 'rule1' => [
                     'rule' => 'notBlank',
                     'message' => 'Please enter valid Name',
-                ],
-                'rule2' => [
-                    'rule' => 'validateUnique',
-                    'provider' => 'table',
-                    'message' => 'Name already in use',
                 ]
             ]);
 
@@ -60,13 +58,7 @@ class ProductsTable extends Table
                     'rule' => 'notBlank',
                     'message' => 'Please enter valid Slug',
                 ],
-                'rule2' => [
-                    'rule' => ['custom', '/^[a-z\-]{3,50}$/'],
-                    'message' => 'Only lowercase letters and dashes, between 3-50 characters',
-                    'allowEmpty' => false,
-                    'required' => false,
-                ],
-                'rule3' => [
+               'rule2' => [
                     'rule' => 'validateUnique',
                     'provider' => 'table',
                     'message' => 'Slug already in use',
@@ -80,7 +72,6 @@ class ProductsTable extends Table
             ->allowEmpty('image');
 
         $validator
-            ->decimal('price')
             ->requirePresence('price', 'create')
             ->notEmpty('price');
 

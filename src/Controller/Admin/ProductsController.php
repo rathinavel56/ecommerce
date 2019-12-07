@@ -10,10 +10,11 @@ class ProductsController extends AppController
 
     public function index()
     {
-        $this->paginate = [
+		$this->paginate = [
             'contain' => ['Categories'],
+			'conditions' => $conditions,
             'order' => [
-                'Products.name' => 'ASC'
+                'Products.id' => 'DESC'
             ],
             'limit' => 150
         ];
@@ -37,8 +38,6 @@ class ProductsController extends AppController
 
     }
 
-////////////////////////////////////////////////////////////////////////////////
-
     public function view($id = null)
     {
         $product = $this->Products->get($id, [
@@ -49,17 +48,45 @@ class ProductsController extends AppController
         $this->set('_serialize', ['product']);
     }
 
-////////////////////////////////////////////////////////////////////////////////
-
     public function add()
     {
         $product = $this->Products->newEntity();
         if ($this->request->is('post')) {
-            $product = $this->Products->patchEntity($product, $this->request->data);
-            if ($this->Products->save($product)) {
+			$this->request->data['slug'] = $this->clean($this->request->data['name']);
+			$query = $this->Products->find();
+			$query->where(['slug' => $this->request->data['slug']])->select(['count' => $query->func()->count('*')]);
+			if ($query) {
+				$productsCount = $query->toArray();
+				$this->request->data['slug'] = ($productsCount[0]->count != 0) ? $this->request->data['slug'].'-'.($productsCount[0]->count+1): $this->request->data['slug'];
+			}
+			$attachments = $this->request->data['Attachments'];
+			unset($this->request->data['Attachments']);
+			$product = $this->Products->patchEntity($product, $this->request->data);
+			if ($result = $this->Products->save($product)) {
+				if (!empty($attachments)) {
+					$this->insertAttachment($attachments, $result->id);
+				}
                 $this->Flash->success(__('The product has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
+				if($product->errors()){
+					$error_msg = [];
+					foreach( $product->errors() as $errors){
+						if(is_array($errors)){
+							foreach($errors as $error){
+								$error_msg[]    =   $error;
+							}
+						}else{
+							$error_msg[]    =   $errors;
+						}
+					}
+
+					if(!empty($error_msg)){
+						$this->Flash->error(
+							__("Please fix the following error(s):".implode("\n \r", $error_msg))
+						);
+					}
+				}
                 $this->Flash->error(__('The product could not be saved. Please, try again.'));
             }
         }
@@ -67,29 +94,59 @@ class ProductsController extends AppController
         $this->set(compact('product', 'categories'));
         $this->set('_serialize', ['product']);
     }
-
-////////////////////////////////////////////////////////////////////////////////
+	
+	public function clean($string) {
+	   $string = str_replace(' ', '-', $string);
+	   return strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', $string));
+	}
+	
+	public function insertAttachment($attachments, $id)
+    {
+		if($attachments) {
+			foreach ($attachments as $attachment) {
+				$attachmentEntity = $this->Products->Attachments->newEntity();
+				$attachment['foreign_id'] = $id;
+				$attachment['Attachments']['name'] = $attachment['name'];
+				$attachment['Attachments']['class'] = 'product';
+				$this->upload_file($attachment, $id);
+				$attachmentSave = $this->Products->Attachments->patchEntity($attachmentEntity, $attachment);
+				$this->Products->Attachments->save($attachmentSave);
+			}
+		}
+    }
 
     public function edit($id = null)
     {
-        $product = $this->Products->get($id, [
-            'contain' => []
-        ]);
+        $product = $this->Products->get($id, ['contain' => ['Attachments']]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+			if ($product->name != $this->request->data['name']) {
+				$this->request->data['slug'] = $this->clean($this->request->data['name']);
+				$query = $this->Products->find();
+				$query->where(['slug' => $this->request->data['slug']])->select(['count' => $query->func()->count('*')]);
+				if ($query) {
+					$productsCount = $query->toArray();
+					$this->request->data['slug'] = ($productsCount[0]->count != 0) ? $this->request->data['slug'].'-'.($productsCount[0]->count+1): $this->request->data['slug'];
+				}
+			}
+			$offer_date = $this->request->data['offer_date'];
+			$this->request->data['offer_date'] = $offer_date['year'].'-'.$offer_date['month'].'-'.$offer_date['day'];
+			$attachments = $this->request->data['Attachments'];
+			unset($this->request->data['Attachments']);
             $product = $this->Products->patchEntity($product, $this->request->data);
-            if ($this->Products->save($product)) {
+			if ($this->Products->save($product)) {
+				if (!empty($attachments)) {
+					$this->insertAttachment($attachments, $id);
+				}
                 $this->Flash->success(__('The product has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The product could not be saved. Please, try again.'));
             }
         }
-        $categories = $this->Products->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('product', 'categories'));
+		$categories = $this->Products->Categories->find('list', ['limit' => 200]);
+		$this->set(compact('product', 'categories'));
         $this->set('_serialize', ['product']);
     }
-
-////////////////////////////////////////////////////////////////////////////////
 
     public function delete($id = null)
     {
@@ -102,7 +159,31 @@ class ProductsController extends AppController
         }
         return $this->redirect(['action' => 'index']);
     }
-
-////////////////////////////////////////////////////////////////////////////////
+	
+	public function delete_attachment($id = null)
+    {
+		$this->autoRender = false;
+        $this->request->allowMethod(['post', 'delete', 'get']);
+        $attachment = $this->Products->Attachments->get($id);
+        if ($this->Products->Attachments->delete($attachment)) {
+			echo 'The Attachments has been deleted.';
+        } else {
+            echo 'The Attachments could not be deleted. Please, try again.';
+        }
+    }
+	
+	public function upload_file($attachments, $id)
+    {
+		$tmpFilePath = $attachments['tmp_name'];
+		if ($tmpFilePath != "") {
+			$shortname = $attachments['name'];
+			$uploadPath = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'products'.DIRECTORY_SEPARATOR.$id;
+			if (!file_exists($uploadPath)) {
+				mkdir($uploadPath, 0777, true);
+			}
+			$filePath = $uploadPath.DIRECTORY_SEPARATOR.$attachments['name'];
+			move_uploaded_file($tmpFilePath, $filePath);
+		}
+	}
 
 }

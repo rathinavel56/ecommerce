@@ -1,9 +1,9 @@
 <br />
 <br />
 
-<h3>Actions</h3>
+<h3 class="pull-right">Actions</h3>
 
-<?php echo $this->Html->link('New', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+<?php echo $this->Html->link('Add', ['action' => 'add'], ['class' => 'btn btn-primary pull-right']) ?>
 
 <br />
 <br />

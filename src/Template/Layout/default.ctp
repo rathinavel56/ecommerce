@@ -13,6 +13,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 <meta property="og:description" content="<?php echo !isset($description) ? '' : $description ; ?>">
 <meta property="og:url" content="<?php //echo Router::url( $this->here, true ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!--https://htmlstream.com/preview/unify-v2.6.2/e-commerce/page-single-product-1.html-->
 <?php //echo $this->fetch('css'); ?>
 <?php //echo $this->fetch('script'); ?>
     <!-- Favicon -->

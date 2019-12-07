@@ -1,3 +1,4 @@
+<?php if ($this->request->params['paging'][$this->request->params['controller']]['count'] != 0) { ?>
 <nav aria-label="Page navigation" class="fullwidth">
     <ul class="pagination">
         <?php
@@ -44,4 +45,5 @@
 	?>
     </ul>
 </nav>
-<?php //echo $this->Paginator->counter('Page {{page}} of {{pages}}'); ?>
+<?php echo $this->Paginator->counter('Page {{page}} of {{pages}}'); ?>
+<?php } ?>

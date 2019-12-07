@@ -11,3 +11,22 @@
 	border: solid 1px transparent !important;
 	border-color: #ddd !important;
 }
+.home_drop {
+	list-style-type: none;
+	padding: 22px;
+}
+.home_drop li a {
+	color: black;
+}
+.no-record-found {
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.5rem;
+}
+.no-pad-top {
+	padding-top: 0px !important;
+}
+.view-contact {
+	color: white;
+    text-decoration: none;
+}

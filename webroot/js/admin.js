@@ -12,5 +12,11 @@ $(document).ready(function() {
         $.get(this.href + "?" + new Date().getTime() );
         return false;
     });
+	$(".delete-attachment").click(function(){
+      $.ajax({url: window.location.origin + '/admin/products/delete_attachment/' + $(".delete-attachment").attr("attr-id"), success: function(result){
+		alert(result);
+		location.reload();
+	  }});
+    });
 
 });

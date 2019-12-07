@@ -1,4 +1,8 @@
-      <!-- Header -->
+<?php
+use Cake\Routing\Router; 
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";
+?> 
+ <!-- Header -->
       <header id="js-header" class="u-header u-header--sticky-top u-header--toggle-section u-header--change-appearance"
               data-header-fix-moment="200"
               data-header-fix-effect="slide">
@@ -7,7 +11,7 @@
             <div class="row flex-lg-row align-items-center justify-content-lg-start">
               <div class="col-6 col-sm-3 col-lg-2">
                 <!-- Logo -->
-                <a href="#" class="js-go-to navbar-brand"
+                <a href="<?php echo $actual_link;?>" class="js-go-to navbar-brand"
                    data-type="static">
                   <img class="img-fluid g-width-150" src="<?php echo $actual_link;?>assets/img/logo.png" alt="Logo">
                 </a>
@@ -20,7 +24,7 @@
                     <div class="text-right text-sm-left g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25">+918048878227</strong>
+                      <strong class="d-block g-pl-25">+918048878227 (Subramani Sivakumar)</strong>
                     </div>
                   </div>
 
@@ -39,20 +43,6 @@
                       <strong class="d-block g-pl-25">market@info.com</strong>
                     </div>
                   </div>
-
-                  <div class="col-sm g-hidden-sm-down">
-                    <ul class="list-inline mb-0 g-pa-10--lg">
-                      <li class="list-inline-item g-valign-middle g-mx-3">
-                        <a class="d-block u-icon-v3 u-icon-size--sm g-rounded-50x g-bg-gray-light-v4 g-color-gray-light-v1 g-bg-primary--hover g-color-white--hover" href="#"><i class="fa fa-facebook g-font-size-default"></i></a>
-                      </li>
-                      <li class="list-inline-item g-valign-middle g-mx-3">
-                        <a class="d-block u-icon-v3 u-icon-size--sm g-rounded-50x g-bg-gray-light-v4 g-color-gray-light-v1 g-bg-primary--hover g-color-white--hover" href="#"><i class="fa fa-twitter g-font-size-default"></i></a>
-                      </li>
-                      <li class="list-inline-item g-valign-middle g-mx-3">
-                        <a class="d-block u-icon-v3 u-icon-size--sm g-rounded-50x g-bg-gray-light-v4 g-color-gray-light-v1 g-bg-primary--hover g-color-white--hover" href="#"><i class="fa fa-instagram g-font-size-default"></i></a>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
@@ -67,15 +57,32 @@
               <div class="collapse navbar-collapse align-items-center flex-sm-row g-mr-40--sm" id="navBar" data-mobile-scroll-hide="true">
                 <ul id="js-scroll-nav" class="navbar-nav text-uppercase g-font-weight-700 g-font-size-13 g-py-10--md mr-auto marginauto">
                   <li class="nav-item g-mr-15--lg g-mb-7 g-mb-0--lg active">
-                    <a href="#home" class="nav-link g-color-primary--hover p-0">Home
+                    <a href="<?php echo Router::url('/');?>#home" class="nav-link g-color-primary--hover p-0">Home
                       <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
-                    <a href="#ourProducts" class="nav-link g-color-primary--hover p-0">Pumps</a>
+                    <a href="<?php echo Router::url('/');?>#ourProducts" class="nav-link g-color-primary--hover p-0">Pumps</a>
                   </li>
                   <li class="nav-item g-ml-10--lg g-ml-15--xl">
-                    <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact</a>
+                    <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact Us</a>
                   </li>
+				  <li class="nav-item g-ml-10--lg g-ml-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+					   <div class="btn-group">
+							<a id="mega-menu-label-3" class="nav-link g-color-primary--hover p-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						   Categories
+						   <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-7"></i>
+						   </a>	
+							<div class="dropdown-menu dropdown-menu-left">
+								<ul class="home_drop">
+								<?php
+									foreach ($this->App->getCategory() as $key=>$value) {
+										echo '<li>'.$this->Html->link( $value, array('controller'=>'products','action'=>'index','cat_id' =>$key,'cat_name' =>$value ), array('escape'=>false)).'</li>';
+									}
+								?>
+								</ul>
+							  </div>						   
+						</div>
+					</li>
                 </ul>
               </div>
               <!-- End Navigation -->
