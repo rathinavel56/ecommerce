@@ -49,8 +49,8 @@ class ProductsController extends AppController
             'conditions' => $conditions,
             'limit' => 21
         ];
-        $products = $this->paginate($this->Products);
-        $this->set(compact('products','cat_name'));
+		$products = $this->paginate($this->Products);
+		$this->set(compact('products','cat_name'));
     }
 	
 	public function home()
@@ -82,7 +82,10 @@ class ProductsController extends AppController
             ],
             'limit' => 12
         ]);
-        $this->set(compact('products','productBanners', 'productOffers'));
+		$title_for_layout = 'B & C Techno Solutions';
+		$description = 'Manufacturer of Centrifugal Pump - CNX Chemical Centrifugal Pump, CNX Centrifugal Process Pump, Chemical Centrifugal Pump and Single Stage Centrifugal Pump offered by B & C Techno Solutions, Chennai, Tamil Nadu.';
+		$keywords = 'Centrifugal Pump, CNX Chemical Centrifugal Pump, CNX Centrifugal Process Pump, Chemical Centrifugal Pump, Single Stage Centrifugal Pump, Chemical Dosing Centrifugal Pump';
+		$this->set(compact('products','productBanners', 'productOffers','title_for_layout', 'description', 'keywords'));
     }
 
     public function view($slug = null)

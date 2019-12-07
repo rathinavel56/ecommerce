@@ -7,22 +7,22 @@
             <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 g-color-white mb-0">Contact us</h2>
           </div>
 
-          <form>
+          <form id="contact-us">
             <div class="row">
               <div class="col-md-6 form-group g-mb-30">
-                <input id="inputGroup1_1" class="form-control h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Your name">
+                <input id="name" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Your name" required>
               </div>
 
               <div class="col-md-6 form-group g-mb-30">
-                <input id="inputGroup1_2" class="form-control h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="tel" placeholder="Your phone">
+                <input id="phone" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="tel" placeholder="Your phone" required>
               </div>
 
               <div class="col-md-12 form-group g-mb-30">
-                <input id="inputGroup1_3" class="form-control h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Subject">
+                <input id="subject" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Subject" required>
               </div>
 
               <div class="col-md-12 form-group g-mb-30">
-                <textarea id="inputGroup1_4" class="form-control g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Message"></textarea>
+                <textarea id="message" class="form-control js-contact-us g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Message" required></textarea>
               </div>
             </div>
 
