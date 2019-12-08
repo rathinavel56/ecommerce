@@ -31,7 +31,7 @@
             </div>
 
             <div class="text-center">
-              <button class="btn u-btn-primary btn-md btn-block text-uppercase g-font-weight-700 g-font-size-12 g-rounded-4 g-py-12 g-py-15--md g-px-20 g-px-40--md" type="submit" role="button">Send message</button>
+              <button class="btn u-btn-primary btn-md text-uppercase g-font-weight-700 g-font-size-12 g-rounded-4 g-py-12 g-py-15--md g-px-20 g-px-40--md" type="submit" role="button">Send message</button>
             </div>
           </form>
         </div>
@@ -41,12 +41,37 @@
       <footer class="text-center g-color-gray-dark-v5 g-bg-secondary">
         <div class="g-pt-70 g-pb-40">
           <div class="container">
-            <a class="d-block g-width-200 g-opacity-0_3 g-mb-30 mx-auto" href="https://htmlstream.com/">
-              <img class="img-fluid" src="<?php echo $actual_link;?>/assets/img/logo-foot.png" alt="Logo">
-            </a>
+			<div class="footer-content">
+				<a class="d-block g-width-200 g-mb-30 mx-auto" href="/">
+				  <img class="img-fluid" src="<?php echo $actual_link;?>/assets/img/logo-foot.png" alt="Logo">
+				</a>
+				<div class="row">
+                  <div class="col-sm g-brd-right--md g-brd-gray-light-v4">
+                    <div class="g-pa-10--lg">
+                      <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
+                      <span class="text-uppercase g-font-size-13">Call Us</span>
+                      <strong class="d-block g-pl-25"><a href="tel:+919840953488">+919840953488 (Sivakumar S)</a></strong>
+                    </div>
+                  </div>
+                  <div class="col-sm g-hidden-lg-down g-brd-right--sm g-brd-gray-light-v4">
+                    <div class="g-pa-10--lg">
+                      <span class="icon icon-clock g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
+                      <span class="text-uppercase g-font-size-13">Opening time</span>
+                      <strong class="d-block g-pl-25">Mon-Sat: 9.30 AM to 5.30 PM</strong>
+                    </div>
+                  </div>
+                  <div class="col-sm g-hidden-sm-down g-brd-right--sm g-brd-gray-light-v4">
+                    <div class="g-pa-10--lg">
+                      <span class="icon icon-envelope g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
+                      <span class="text-uppercase g-font-size-13">Email us</span>
+                      <strong class="d-block g-pl-25"><a href="mailto:siva.66shiva@gmail.com" target="_top">siva.66shiva@gmail.com</a></strong>
+                    </div>
+                  </div>
+                </div>
+			</div>
         </div>
 
-        <div class="g-brd-top g-brd-gray-dark-v2 g-py-30">
+        <div class="g-brd-top g-py-30">
           <div class="container">
             <p class="mb-0">
               &copy; 2019 All right reserved.

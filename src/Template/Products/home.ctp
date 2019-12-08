@@ -43,49 +43,54 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 				   $imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('688', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
             <div class="js-slide">
               <!-- Article -->
-              <article class="row g-bg-secondary mx-0">
-                <div class="col-md-6 col-lg-7 g-bg-size-cover g-min-height-250"
-                     data-bg-img-src="<?php echo $imgUrl;?>"></div>
+			  <div class="g-bg-secondary mx-0" style="border: 1px solid #ccc;">
+              <article class="row">
+				<div class="col-md-6 col-lg-6">
+					<div class="g-bg-size-cover g-min-height-250"
+                     data-bg-img-src="<?php echo $imgUrl;?>" style="background-image: url('<?php echo $imgUrl;?>');background-position: center center;min-height: 450px;"></div>
+				</div>
+                <div class="col-md-6 col-lg-6 g-pa-30">
+					<div style="margin-top: 50px;" >
+					  <h3 class="text-uppercase g-font-weight-700 g-font-size-16 g-mb-20">
+						<a class="g-color-white" href="#"><?php echo $productBanner->name;?></a>
+					  </h3>
+					  <!-- End Article Title -->
+					  <p class="g-color-white-opacity-0_3 g-mb-25"><?php echo $productBanner->description;?></p>
 
-                <div class="col-md-6 col-lg-5 g-pa-30">
-                  <h3 class="text-uppercase g-font-weight-700 g-font-size-16 g-mb-20">
-                    <a class="g-color-white" href="#"><?php echo $productBanner->name;?></a>
-                  </h3>
-                  <!-- End Article Title -->
-                  <p class="g-color-white-opacity-0_3 g-mb-25"><?php echo $productBanner->description;?></p>
+					  <!-- Article Icons -->
+					  <div class="g-overflow-hidden g-mb-15" style="padding-bottom: 50px;">
+						<ul class="list-inline text-center g-font-size-12 g-brd-top g-brd-bottom g-brd-white-opacity-0_1 g-mx-minus-25">
+						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-pa-12-5-7 mx-0 g-my-5">
+							<?php echo $productBanner->power_source;?>
+						  </li>
+						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
+							Stage <?php echo $productBanner->stages;?>
+						  </li>
+						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
+							<?php echo $productBanner->motor_speed;?> HP
+						  </li>
+						</ul>
+					  </div>
+					  <!-- End Article Icons -->
 
-                  <!-- Article Icons -->
-                  <div class="g-overflow-hidden g-mb-15">
-                    <ul class="list-inline text-center g-font-size-12 g-brd-top g-brd-bottom g-brd-white-opacity-0_1 g-mx-minus-25">
-                      <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-pa-12-5-7 mx-0 g-my-5">
-                        <?php echo $productBanner->power_source;?>
-                      </li>
-                      <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
-                        Stage <?php echo $productBanner->stages;?>
-                      </li>
-                      <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
-                        <?php echo $productBanner->motor_speed;?> HP
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- End Article Icons -->
+					  <!-- Article Footer -->
+					  <footer class="d-flex justify-content-between">
+						<div class="align-self-center">
+						  <div class="g-font-weight-700 g-font-size-16">
+							<s class="g-color-white-opacity-0_3 g-mr-15"><i class="fa fa-inr"></i> <?php echo $productBanner->price;?></s>
+							<span class="g-color-primary"><i class="fa fa-inr"></i> <?php echo $productBanner->offer_price;?></span>
+						  </div>
+						</div>
 
-                  <!-- Article Footer -->
-                  <footer class="d-flex justify-content-between">
-                    <div class="align-self-center">
-                      <div class="g-font-weight-700 g-font-size-16">
-                        <s class="g-color-white-opacity-0_3 g-mr-15"><i class="fa fa-inr"></i> <?php echo $productBanner->price;?></s>
-                        <span class="g-color-primary"><i class="fa fa-inr"></i> <?php echo $productBanner->offer_price;?></span>
-                      </div>
-                    </div>
-
-                    <div class="align-self-center">
-                      <a class="btn btn-lg text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-color-white-opacity-0_7 g-py-12 g-py-15--md g-px-20 g-px-40--md" href="#contact">Contact Us</a>
-                    </div>
-                  </footer>
-                  <!-- End Article Footer -->
+						<div class="align-self-center">
+						  <a class="btn btn-lg text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-color-white-opacity-0_7 g-py-12 g-py-15--md g-px-20 g-px-40--md" href="#contact">Contact Us</a>
+						</div>
+					  </footer>
+					  <!-- End Article Footer -->
+					  </div>
                 </div>
               </article>
+			  </div>
               <!-- End Article -->
             </div>
 			   <?php } ?>
@@ -112,8 +117,10 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 				  <!-- Article -->
 				  <article class="g-pos-rel">
 					<!-- Article Image -->
-					<?php $imgUrl = !empty($product->attachments) ? $this->App->imageResize('350', 'Products', $product->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
-					<img class="w-100 d-block g-rounded-top-5 homeProductImg" src="<?php echo $imgUrl;?>" alt="Image description">
+					<div class="homeProductImg text-center">
+						<?php $imgUrl = !empty($product->attachments) ? $this->App->imageResize('350', 'Products', $product->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
+						<img class="w-100 d-block g-rounded-top-5" src="<?php echo $imgUrl;?>" alt="Image description">
+					</div>
 					<!-- End Article Image -->
 
 					<!-- Article Content -->

@@ -10,7 +10,7 @@
 				 <?php if ($product->attachments) {
 							$i = 0;
 							foreach($product->attachments as $attachments) {?>
-							  <div class="js-slide g-bg-cover g-bg-black-opacity-0_1--after">
+							  <div class="js-slide g-bg-cover g-bg-black-opacity-0_1--after view-img-border">
 								<img class="img-fluid w-100" src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>" alt="Image Description">
 							  </div>
 					<?php $i++;} } ?>

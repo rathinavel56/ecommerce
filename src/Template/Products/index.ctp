@@ -15,8 +15,10 @@
 				  <!-- Article -->
 				  <article class="g-pos-rel">
 					<!-- Article Image -->
-					<?php $imgUrl = !empty($product->attachments) ? $this->App->imageResize('350', 'Products', $product->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
-					<img class="w-100 d-block g-rounded-top-5 homeProductImg" src="<?php echo $imgUrl;?>" alt="Image description">
+					<div class="homeProductImg text-center">
+						<?php $imgUrl = !empty($product->attachments) ? $this->App->imageResize('350', 'Products', $product->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
+						<img class="w-100 d-block g-rounded-top-5" src="<?php echo $imgUrl;?>" alt="Image description">
+					</div>	
 					<!-- End Article Image -->
 
 					<!-- Article Content -->

@@ -59,7 +59,7 @@ $(document).ready(function() {
             <th><?= $this->Paginator->sort('category_id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('slug') ?></th>
-            <th><?= $this->Paginator->sort('image') ?></th>
+            <th><?= $this->Paginator->sort('is_home') ?></th>
             <th><?= $this->Paginator->sort('price') ?></th>
             <th><?= $this->Paginator->sort('active') ?></th>
             <th class="actions">Actions</th>
@@ -72,7 +72,7 @@ $(document).ready(function() {
                 <td><span class="category_id" data-value="<?php echo $product->category_id; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->category->name; ?></span></td>
                 <td><span class="name" data-value="<?php echo $product->name; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->name; ?></span></td>
                 <td><span class="slug" data-value="<?php echo $product->slug; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->slug; ?></span></td>
-                <td><?= h($product->image) ?></td>
+                <td><?= ($product->is_home == 1) ? 'yes': 'no'; ?></td>
                 <td><span class="price" data-value="<?php echo $product->price; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->price; ?></span></td>
                 <td><?php echo $this->Html->link($this->Html->image('icon_' . $product->active . '.png'), ['controller' => 'products', 'action' => 'toggle', 'active', $product->id], ['class' => 'toggle', 'escape' => false]); ?></td>
                 <td class="actions">

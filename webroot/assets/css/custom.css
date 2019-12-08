@@ -10,6 +10,12 @@
 .homeProductImg {
 	border: solid 1px transparent !important;
 	border-color: #ddd !important;
+	padding: 10px;
+}
+.homeProductImg img {
+	height: 223px !important;
+    width: auto !important;
+    display: inline-block !important;
 }
 .home_drop {
 	list-style-type: none;
@@ -29,4 +35,15 @@
 .view-contact {
 	color: white;
     text-decoration: none;
+}
+.ms-slide {
+	margin-top: 12px;
+}
+.view-img-border {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+.footer-content span, .footer-content strong, .footer-content a {
+	color:#FFFFFF !important;
 }

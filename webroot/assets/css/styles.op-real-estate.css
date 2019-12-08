@@ -29104,10 +29104,6 @@ pre[class*="language-"] .toolbar-item a {
   background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-.g-bg-black-opacity-0_1--after::after {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-}
-
 .g-bg-black-opacity-0_2 {
   background-color: rgba(0, 0, 0, 0.2) !important;
 }
@@ -49350,7 +49346,6 @@ svg.g-transition--linear polygon {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .ms-thumb-frame {
