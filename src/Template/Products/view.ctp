@@ -6,29 +6,12 @@
                  data-fade="true"
                  data-arrows-classes="u-arrow-v1 g-brd-around g-brd-white g-absolute-centered--y g-width-45 g-height-45 g-font-size-14 g-color-white g-color-primary--hover rounded-circle"
                  data-arrow-left-classes="fa fa-angle-left g-left-40"
-                 data-arrow-right-classes="fa fa-angle-right g-right-40"
-                 data-nav-for="#carouselCus2">
+                 data-arrow-right-classes="fa fa-angle-right g-right-40">
 				 <?php if ($product->attachments) {
 							$i = 0;
 							foreach($product->attachments as $attachments) {?>
 							  <div class="js-slide g-bg-cover g-bg-black-opacity-0_1--after">
 								<img class="img-fluid w-100" src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>" alt="Image Description">
-							  </div>
-					<?php $i++;} } ?>
-            </div>
-
-            <div id="carouselCus2" class="js-carousel text-center u-carousel-v3 g-mx-minus-5"
-                 data-infinite="true"
-                 data-center-mode="true"
-                 data-slides-show="3"
-                 data-is-thumbs="true"
-                 data-focus-on-select="false"
-                 data-nav-for="#carouselCus1">
-				 <?php if ($product->attachments) {
-							$i = 0;
-							foreach($product->attachments as $attachments) {?>
-							  <div class="js-slide g-cursor-pointer g-px-5">
-								<img class="img-fluid" src="<?php echo $this->App->imageResize('250', 'Products', $attachments);?>" alt="Image Description">
 							  </div>
 					<?php $i++;} } ?>
             </div>
@@ -98,7 +81,7 @@
             <div class="row g-mx-minus-5 g-mb-20">
                <div class="col g-px-5 g-mb-10">
                   <button class="btn btn-block u-btn-primary g-font-size-12 text-uppercase g-py-15 g-px-25" type="button">
-                  <a href="#contact" class="view-contact">Contact Us</a> <i class="align-middle ml-2 icon-finance-100 u-line-icon-pro"></i>
+                  <a href="#contact" class="view-contact">Enquiry Now</a>
                   </button>
                </div>
             </div>

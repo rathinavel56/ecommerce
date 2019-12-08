@@ -4,25 +4,29 @@
       <section id="contact" class="u-bg-overlay g-bg-img-hero g-bg-secondary-opacity-0_85--after g-py-100" style="background-image: url(assets/img-temp/1920x1275/img1.jpg);">
         <div class="container text-center u-bg-overlay__inner g-max-width-770">
           <div class="u-heading-v2-2--top g-brd-primary g-mb-20">
-            <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 g-color-white mb-0">Contact us</h2>
+            <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 g-color-white mb-0">Enquiry</h2>
           </div>
 
           <form id="contact-us">
             <div class="row">
               <div class="col-md-6 form-group g-mb-30">
-                <input id="name" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Your name" required>
+                <input id="name" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Name" required>
               </div>
 
               <div class="col-md-6 form-group g-mb-30">
-                <input id="phone" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="tel" placeholder="Your phone" required>
+                <input id="phone" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="tel" placeholder="Phone" required>
+              </div>
+              
+              <div class="col-md-12 form-group g-mb-30">
+                <input id="email" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="email" placeholder="Email" required>
               </div>
 
               <div class="col-md-12 form-group g-mb-30">
-                <input id="subject" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Subject" required>
+                <input id="subject" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Your requirement" required>
               </div>
 
               <div class="col-md-12 form-group g-mb-30">
-                <textarea id="message" class="form-control js-contact-us g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Message" required></textarea>
+                <textarea id="message" class="form-control js-contact-us g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Explain about your requirement in few lines (optional)" ></textarea>
               </div>
             </div>
 

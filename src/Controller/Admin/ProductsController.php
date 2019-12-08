@@ -107,7 +107,7 @@ class ProductsController extends AppController
 				$attachmentEntity = $this->Products->Attachments->newEntity();
 				$attachment['foreign_id'] = $id;
 				$attachment['Attachments']['name'] = $attachment['name'];
-				$attachment['Attachments']['class'] = 'product';
+				$attachment['Attachments']['class'] = 'Product';
 				$this->upload_file($attachment, $id);
 				$attachmentSave = $this->Products->Attachments->patchEntity($attachmentEntity, $attachment);
 				$this->Products->Attachments->save($attachmentSave);
@@ -177,7 +177,7 @@ class ProductsController extends AppController
 		$tmpFilePath = $attachments['tmp_name'];
 		if ($tmpFilePath != "") {
 			$shortname = $attachments['name'];
-			$uploadPath = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'products'.DIRECTORY_SEPARATOR.$id;
+			$uploadPath = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'Products'.DIRECTORY_SEPARATOR.$id;
 			if (!file_exists($uploadPath)) {
 				mkdir($uploadPath, 0777, true);
 			}

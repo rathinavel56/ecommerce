@@ -22,7 +22,7 @@ class AppHelper extends Helper {
 	}
 	
     public function imageResize($newWidth, $class, $originalFile) {
-		$mediaPath = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.$class.DIRECTORY_SEPARATOR.$originalFile->foreign_id.DIRECTORY_SEPARATOR.$originalFile->name;
+        $mediaPath = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.$class.DIRECTORY_SEPARATOR.$originalFile->foreign_id.DIRECTORY_SEPARATOR.$originalFile->name;
 		$imgPath = ROOT.DIRECTORY_SEPARATOR.'webroot'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$class.DIRECTORY_SEPARATOR.$newWidth.DIRECTORY_SEPARATOR.$originalFile->foreign_id;
 		$imgFile = $imgPath.DIRECTORY_SEPARATOR.$originalFile->id.'-'.$originalFile->name;
 		$imgUrl = $this->siteUrl().'/images/'.$class.'/'.$newWidth.'/'.$originalFile->foreign_id.'/'.$originalFile->id.'-'.$originalFile->name;

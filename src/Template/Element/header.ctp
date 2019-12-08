@@ -24,7 +24,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                     <div class="text-right text-sm-left g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25">+918048878227 (Subramani Sivakumar)</strong>
+                      <strong class="d-block g-pl-25">+918048878227 (Sivakumar S)</strong>
                     </div>
                   </div>
 
@@ -32,7 +32,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                     <div class="g-pa-10--lg">
                       <span class="icon icon-clock g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Opening time</span>
-                      <strong class="d-block g-pl-25">Mon-Sat: 08.00 - 18.00</strong>
+                      <strong class="d-block g-pl-25">Mon-Sat: 08.00 AM - 06.00 PM</strong>
                     </div>
                   </div>
 
@@ -40,7 +40,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                     <div class="g-pa-10--lg">
                       <span class="icon icon-envelope g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Email us</span>
-                      <strong class="d-block g-pl-25">market@info.com</strong>
+                      <strong class="d-block g-pl-25">siva.66shiva@gmail.com</strong>
                     </div>
                   </div>
                 </div>
@@ -56,17 +56,14 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
               <!-- Navigation -->
               <div class="collapse navbar-collapse align-items-center flex-sm-row g-mr-40--sm" id="navBar" data-mobile-scroll-hide="true">
                 <ul id="js-scroll-nav" class="navbar-nav text-uppercase g-font-weight-700 g-font-size-13 g-py-10--md mr-auto marginauto">
-                  <li class="nav-item g-mr-15--lg g-mb-7 g-mb-0--lg active">
+                  <li style="margin-top: 1px;" class="nav-item g-mr-15--lg g-mb-7 g-mb-0--lg active">
                     <a href="<?php echo Router::url('/');?>#home" class="nav-link g-color-primary--hover p-0">Home
                       <span class="sr-only">(current)</span></a>
                   </li>
-                  <li class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
+                  <li style="margin-top: 1px;" class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
                     <a href="<?php echo Router::url('/');?>#ourProducts" class="nav-link g-color-primary--hover p-0">Pumps</a>
                   </li>
-                  <li class="nav-item g-ml-10--lg g-ml-15--xl">
-                    <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact Us</a>
-                  </li>
-				  <li class="nav-item g-ml-10--lg g-ml-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+				  <li class="nav-item g-ml-10--lg g-ml-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right" style="margin-top: -1px;">
 					   <div class="btn-group">
 							<a id="mega-menu-label-3" class="nav-link g-color-primary--hover p-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						   Categories
@@ -83,6 +80,9 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 							  </div>						   
 						</div>
 					</li>
+					 <li class="nav-item g-ml-10--lg g-ml-15--xl" style="margin-top: 1px;">
+                    <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact Us</a>
+                  </li>
                 </ul>
               </div>
               <!-- End Navigation -->
