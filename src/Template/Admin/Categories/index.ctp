@@ -1,3 +1,12 @@
+<br />
+<br />
+
+<h3 class="pull-right">Actions</h3>
+
+<?php echo $this->Html->link('Add', ['action' => 'add'], ['class' => 'btn btn-primary pull-right']) ?>
+
+<br />
+<br />
 <script>
 
 $(document).ready(function() {
@@ -52,13 +61,3 @@ $(document).ready(function() {
 <br />
 
 <?php echo $this->element('pagination'); ?>
-
-<br />
-<br />
-
-<h3>Actions</h3>
-
-<?php echo $this->Html->link('New', ['action' => 'add'], ['class' => 'btn btn-default']) ?>
-
-<br />
-<br />

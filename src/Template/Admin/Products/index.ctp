@@ -78,6 +78,7 @@ $(document).ready(function() {
                 <td class="actions">
                     <?= $this->Html->link('View', ['action' => 'view', $product->id], ['class' => 'btn btn-default btn-xs']); ?>
                     <?= $this->Html->link('Edit', ['action' => 'edit', $product->id], ['class' => 'btn btn-default btn-xs']); ?>
+					<?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $product->id], ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]); ?>
                 </td>
             </tr>
         <?php endforeach; ?>

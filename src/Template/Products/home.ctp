@@ -18,11 +18,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                  data-effect="fade()"
                  data-ease="easeOutExpo"
                  data-duration="2200">
-              <h3 class="h6 text-uppercase g-font-weight-700 g-font-size-32--md g-color-white g-mb-10 g-mb-25--md"><i class="fa fa-inr"></i> <?php echo $productBanner->price;?>
-                <small class="g-font-size-12 g-valign-middle">/ unit</small>
-              </h3>
-              <h2 class="text-uppercase g-line-height-1_2 g-font-weight-700 g-font-size-20 g-font-size-46--md g-color-white mb-0 g-mb-35--md"><?php echo $productBanner->name;?></h2>
-              <a class="btn btn-lg g-hidden-md-down text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-py-15 g-px-40" href="#contact">Contact Us</a>
             </div>
           </div>
 		 <?php

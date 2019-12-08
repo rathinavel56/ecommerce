@@ -52,6 +52,7 @@ class ProductsController extends AppController
     {
         $product = $this->Products->newEntity();
         if ($this->request->is('post')) {
+			$this->request->data['title'] = $this->request->data['name'];
 			$this->request->data['slug'] = $this->clean($this->request->data['name']);
 			$query = $this->Products->find();
 			$query->where(['slug' => $this->request->data['slug']])->select(['count' => $query->func()->count('*')]);
@@ -120,6 +121,7 @@ class ProductsController extends AppController
         $product = $this->Products->get($id, ['contain' => ['Attachments']]);
         if ($this->request->is(['patch', 'post', 'put'])) {
 			if ($product->name != $this->request->data['name']) {
+				$this->request->data['title'] = $this->request->data['name'];
 				$this->request->data['slug'] = $this->clean($this->request->data['name']);
 				$query = $this->Products->find();
 				$query->where(['slug' => $this->request->data['slug']])->select(['count' => $query->func()->count('*')]);

@@ -1,8 +1,6 @@
 <?php
 use Cake\Routing\Router; 
-$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";
-?> 
- <!-- Header -->
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";?>
       <header id="js-header" class="u-header u-header--sticky-top u-header--toggle-section u-header--change-appearance"
               data-header-fix-moment="200"
               data-header-fix-effect="slide">
@@ -10,37 +8,32 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
           <div class="container">
             <div class="row flex-lg-row align-items-center justify-content-lg-start">
               <div class="col-6 col-sm-3 col-lg-2">
-                <!-- Logo -->
                 <a href="<?php echo $actual_link;?>" class="js-go-to navbar-brand"
                    data-type="static">
                   <img class="img-fluid g-width-150" src="<?php echo $actual_link;?>assets/img/logo.png" alt="Logo">
                 </a>
-                <!-- End Logo -->
               </div>
-
               <div class="col-6 col-sm-9 col-lg-10">
                 <div class="row">
                   <div class="col-sm g-brd-right--md g-brd-gray-light-v4">
                     <div class="text-right text-sm-left g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25">+918048878227 (Sivakumar S)</strong>
+                      <strong class="d-block g-pl-25"><a href="tel:+919840953488">+919840953488 (Sivakumar S)</a></strong>
                     </div>
                   </div>
-
                   <div class="col-sm g-hidden-lg-down g-brd-right--sm g-brd-gray-light-v4">
                     <div class="g-pa-10--lg">
                       <span class="icon icon-clock g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Opening time</span>
-                      <strong class="d-block g-pl-25">Mon-Sat: 08.00 AM - 06.00 PM</strong>
+                      <strong class="d-block g-pl-25">Mon-Sat: 9.30 AM to 5.30 PM</strong>
                     </div>
                   </div>
-
                   <div class="col-sm g-hidden-sm-down g-brd-right--sm g-brd-gray-light-v4">
                     <div class="g-pa-10--lg">
                       <span class="icon icon-envelope g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Email us</span>
-                      <strong class="d-block g-pl-25">siva.66shiva@gmail.com</strong>
+                      <strong class="d-block g-pl-25"><a href="mailto:siva.66shiva@gmail.com" target="_top">siva.66shiva@gmail.com</a></strong>
                     </div>
                   </div>
                 </div>
@@ -48,12 +41,10 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
             </div>
           </div>
         </div>
-
         <div class="u-header__section u-header__section--dark g-bg-primary g-py-16"
              data-header-fix-moment-classes="u-shadow-v18">
           <nav class="navbar navbar-expand-lg py-0">
             <div class="container">
-              <!-- Navigation -->
               <div class="collapse navbar-collapse align-items-center flex-sm-row g-mr-40--sm" id="navBar" data-mobile-scroll-hide="true">
                 <ul id="js-scroll-nav" class="navbar-nav text-uppercase g-font-weight-700 g-font-size-13 g-py-10--md mr-auto marginauto">
                   <li style="margin-top: 1px;" class="nav-item g-mr-15--lg g-mb-7 g-mb-0--lg active">
@@ -85,9 +76,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                   </li>
                 </ul>
               </div>
-              <!-- End Navigation -->
-
-              <!-- Responsive Toggle Button -->
               <button class="navbar-toggler btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-minus-8 g-right-20" type="button"
                       aria-label="Toggle navigation"
                       aria-expanded="false"
@@ -100,7 +88,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                   </span>
                 </span>
               </button>
-              <!-- End Responsive Toggle Button -->
             </div>
           </nav>
         </div>

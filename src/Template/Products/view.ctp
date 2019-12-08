@@ -35,7 +35,7 @@
 			   <?php } ?>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Type</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Model</h5>
                <label><?php echo $product->category->name;?></label>
             </div>
             <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
@@ -43,11 +43,11 @@
 			   <label><?php echo $product->head;?></label>               
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Power Source</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Discharge</h5>
 			   <label><?php echo $product->power_source;?></label>               
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Brand</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Efficency</h5>
 			   <label><?php echo $product->brand;?></label>               
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
@@ -55,23 +55,23 @@
                <label><?php echo $product->max_flow_rate;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Motor Speed</h5>
-               <label><?php echo $product->motor_speed;?> HP</label>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Power BKW</h5>
+               <label><?php echo $product->motor_speed;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Pump Size</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Power MKW</h5>
                <label><?php echo $product->pump_size;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Temperature</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">RPM</h5>
                <label><?php echo $product->temperature;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Frequency</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Liquid</h5>
                <label><?php echo $product->frequency;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Discharge Size Millimeter</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Specific Gravity</h5>
                <label><?php echo $product->discharge_size_millimeter;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
