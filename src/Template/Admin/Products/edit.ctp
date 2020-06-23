@@ -33,7 +33,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('price', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required']); ?>
+			  <?php echo $this->Form->input('price', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'MOC']); ?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -44,11 +44,6 @@
 		<div class="form-group">
 			<div class="col-sm-10">
 			  <?php echo $this->Form->input('offer_date', ['class' => 'form-control', 'type'=> 'date']); ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-10">
-			  <?php echo $this->Form->input('weight', ['class' => 'form-control', 'type'=> 'number', 'required' => 'required']); ?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -73,7 +68,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('power_source', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Discharge']);?>
+			  <?php echo $this->Form->input('power_source', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Discharge M3/hr']);?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -83,12 +78,12 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('max_flow_rate', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Power']);?>
+			  <?php echo $this->Form->input('max_flow_rate', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Section Delivery']);?>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('motor_speed', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Power BKW']);?>
+			  <?php echo $this->Form->input('motor_speed', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Motor Power BKW']);?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -98,7 +93,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('temperature', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'RPM']);?>
+			  <?php echo $this->Form->input('temperature', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required']);?>
 			</div>
 		</div>
 		<div class="form-group">

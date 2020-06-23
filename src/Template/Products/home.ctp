@@ -6,7 +6,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
         <div class="master-slider ms-promo-2" id="promoSlider">
 		<?php if(!empty($productBanners)) {
 				foreach ($productBanners as $productBanner) {
-					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('original', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
+					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('1400', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
 		?>
           <div class="ms-slide">
             <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
@@ -26,7 +26,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 		 ?>
         </div>
       </section>
-	  <?php if(!empty($productOffers)) {?>
+	 <?php if(!empty($productOffers->toArray())) {?>
       <section id="specialOffers">
 		<div class="container text-center g-max-width-770 g-mb-60">
           <div class="u-heading-v2-2--top g-brd-primary g-mb-20">
@@ -40,34 +40,37 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                data-arrow-left-classes="fa fa-angle-left g-mr-40 g-mr-60--md"
                data-arrow-right-classes="fa fa-angle-right">
 			   <?php foreach ($productOffers as $productOffer) {
-				   $imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('688', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
+				   $imgUrl = !empty($productOffer->attachments) ? $this->App->imageResize('400', 'Products', $productOffer->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
             <div class="js-slide">
               <!-- Article -->
 			  <div class="g-bg-secondary mx-0" style="border: 1px solid #ccc;">
               <article class="row">
 				<div class="col-md-6 col-lg-6">
-					<div class="g-bg-size-cover g-min-height-250"
-                     data-bg-img-src="<?php echo $imgUrl;?>" style="background-image: url('<?php echo $imgUrl;?>');background-position: center center;min-height: 450px;"></div>
+					<div class="g-bg-size-cover g-min-height-250">
+						<div class="offerProductImg text-center" style="background-color: #FFF !important;">
+							<img class="w-100 d-block g-rounded-top-5" src="<?php echo $imgUrl;?>" alt="Image description">
+						</div>
+					</div>
 				</div>
                 <div class="col-md-6 col-lg-6 g-pa-30">
 					<div style="margin-top: 50px;" >
 					  <h3 class="text-uppercase g-font-weight-700 g-font-size-16 g-mb-20">
-						<a class="g-color-white" href="#"><?php echo $productBanner->name;?></a>
+						<?php echo $this->Html->link((strlen($productOffer->name) > 27) ? substr($productOffer->name,0,24).'...' : $productOffer->name, ['action' => 'view', $productOffer->slug, '_full' => true], ['class' => 'g-color-white']); ?>
 					  </h3>
 					  <!-- End Article Title -->
-					  <p class="g-color-white-opacity-0_3 g-mb-25"><?php echo $productBanner->description;?></p>
+					  <p class="g-color-white-opacity-0_3 g-mb-25"><?php echo $productOffer->description;?></p>
 
 					  <!-- Article Icons -->
 					  <div class="g-overflow-hidden g-mb-15" style="padding-bottom: 50px;">
 						<ul class="list-inline text-center g-font-size-12 g-brd-top g-brd-bottom g-brd-white-opacity-0_1 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $productBanner->power_source;?>
+							Head <?php echo $productOffer->head;?>
 						  </li>
 						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
-							Stage <?php echo $productBanner->stages;?>
+							Discharge <?php echo $productOffer->power_source;?> M3/hr
 						  </li>
 						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-brd-left g-brd-white-opacity-0_1 g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $productBanner->motor_speed;?> HP
+							Motor Power <?php echo $productOffer->motor_speed;?> BKW/MKW
 						  </li>
 						</ul>
 					  </div>
@@ -77,13 +80,14 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 					  <footer class="d-flex justify-content-between">
 						<div class="align-self-center">
 						  <div class="g-font-weight-700 g-font-size-16">
-							<s class="g-color-white-opacity-0_3 g-mr-15"><i class="fa fa-inr"></i> <?php echo $productBanner->price;?></s>
-							<span class="g-color-primary"><i class="fa fa-inr"></i> <?php echo $productBanner->offer_price;?></span>
+							<span class="g-color-white-opacity-0_3 g-mr-15">MOC <?php echo $productOffer->price;?></span>
+							<?php /*<s class="g-color-white-opacity-0_3 g-mr-15"><i class="fa fa-inr"></i> <?php echo $productBanner->price;?></s>
+							<span class="g-color-primary"><i class="fa fa-inr"></i> <?php echo $productBanner->offer_price;?></span> */?>
 						  </div>
 						</div>
 
 						<div class="align-self-center">
-						  <a class="btn btn-lg text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-color-white-opacity-0_7 g-py-12 g-py-15--md g-px-20 g-px-40--md" href="#contact">Contact Us</a>
+						  <a class="btn btn-lg text-uppercase u-btn-primary g-font-weight-700 g-font-size-12 g-color-white-opacity-0_7 g-py-12 g-py-15--md g-px-20 g-px-40--md" href="#contact">Enquiry Now</a>
 						</div>
 					  </footer>
 					  <!-- End Article Footer -->
@@ -137,13 +141,13 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 					  <div class="g-overflow-hidden g-mb-15">
 						<ul class="list-inline text-center g-font-size-12 g-color-gray-dark-v5 g-brd-top g-brd-bottom g-brd-gray-light-v3 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $product->power_source;?>
+							Head <?php echo $product->head;?>
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							Stage <?php echo $product->stages;?>
+							Discharge <?php echo $product->power_source;?> M3/hr
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $product->motor_speed;?> HP
+							Motor Power <?php echo $product->motor_speed;?> BKW/MKW
 						  </li>
 						</ul>
 					  </div>
@@ -154,10 +158,11 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 						<div class="align-middle">
 						 <?php echo $product->category->name;?>
 						</div>
-						<div class="align-middle g-font-size-18 g-font-weight-700 text-right g-letter-spacing-1">
-						  <i class="fa fa-inr"></i> <?php $price = (strtotime(date('Y-m-d')) <= strtotime($product->offer_date)) ? $product->offer_price: $product->price;
+						<div class="align-middle">
+						  <?php /*<i class="fa fa-inr"></i> <?php $price = (strtotime(date('Y-m-d')) <= strtotime($product->offer_date)) ? $product->offer_price: $product->price;
 						  echo $price;?>
-						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ Unit</em>
+						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ Unit</em> */?>
+						  MOC <?php echo $product->price;?>
 						</div>
 					  </footer>
 					  <!-- End Article Footer -->

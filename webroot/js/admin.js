@@ -13,7 +13,7 @@ $(document).ready(function() {
         return false;
     });
 	$(".delete-attachment").click(function(){
-      $.ajax({url: window.location.origin + '/admin/products/delete_attachment/' + $(".delete-attachment").attr("attr-id"), success: function(result){
+      $.ajax({url: window.location.origin + '/admin/products/delete_attachment/' + $(this).attr("attr-id"), success: function(result){
 		alert(result);
 		location.reload();
 	  }});

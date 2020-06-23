@@ -23,6 +23,7 @@ use Cake\Routing\Router;
 <script src="<?php echo Router::url('/');?>js/admin.js"></script>
 
 <link href="<?php echo Router::url('/');?>css/jquery-editable.css" rel="stylesheet"/>
+<link rel="stylesheet" href="<?php echo Router::url('/');?>assets/vendor/icon-awesome/css/font-awesome.min.css">
 <script src="<?php echo Router::url('/');?>js/jquery-editable-poshytip.min.js"></script>
 
 <?php echo $this->fetch('css'); ?>

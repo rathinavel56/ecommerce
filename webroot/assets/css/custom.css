@@ -14,8 +14,14 @@
 }
 .homeProductImg img {
 	height: 223px !important;
-    width: auto !important;
-    display: inline-block !important;
+	object-fit: contain;
+}
+.offerProductImg {
+	background-color: #FFF !important;
+}
+.offerProductImg img {
+	height: 400px !important;
+	object-fit: contain;
 }
 .home_drop {
 	list-style-type: none;
@@ -46,4 +52,24 @@
 }
 .footer-content span, .footer-content strong, .footer-content a {
 	color:#FFFFFF !important;
+}
+.required-field {
+	color: red !important;
+}
+.nav-link {
+   color: #FFFF;
+}
+.js-carousel .slick-arrow {
+	background-color: #e74c3c !important;
+}
+.js-carousel .slick-arrow::before {
+	color: #FFFF;
+}
+.page-link {
+	background-color: #e74c3c !important;
+    color: #FFFF !important;
+}
+.scroll-top {
+	background-color: #e74c3c !important;
+    color: #FFFF !important;
 }

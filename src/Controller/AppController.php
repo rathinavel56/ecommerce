@@ -151,6 +151,11 @@ class AppController extends Controller {
         }
 
     }
+	
+	public function toArrayConvert($object)
+    {
+		return json_decode(json_encode($object), true);
+	}
 
 ////////////////////////////////////////////////////////////////////////////////
 

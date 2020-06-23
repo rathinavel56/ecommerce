@@ -51,6 +51,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
 
     $routes->connect('/', ['controller' => 'Products', 'action' => 'home']);
+	$routes->connect('/enquiry', ['controller' => 'Products', 'action' => 'enquiry']);
     $routes->connect('/shop/*', ['controller' => 'Products', 'action' => 'view']);
     $routes->connect('/cart', ['controller' => 'Products', 'action' => 'cart']);
     $routes->connect('/address', ['controller' => 'Orders', 'action' => 'address']);

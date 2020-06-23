@@ -35,13 +35,13 @@
 					  <div class="g-overflow-hidden g-mb-15">
 						<ul class="list-inline text-center g-font-size-12 g-color-gray-dark-v5 g-brd-top g-brd-bottom g-brd-gray-light-v3 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $product->power_source;?>
+							Head <?php echo $product->head;?>
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							Stage <?php echo $product->stages;?>
+							Discharge <?php echo $product->power_source;?> M3/hr
 						  </li>
 						  <li class="list-inline-item g-width-30x g-brd-left g-brd-gray-light-v3 g-pa-12-5-7 mx-0 g-my-5">
-							<?php echo $product->motor_speed;?> HP
+							Motor Power <?php echo $product->motor_speed;?> BKW/MKW
 						  </li>
 						</ul>
 					  </div>
@@ -52,10 +52,11 @@
 						<div class="align-middle">
 						 <?php echo $product->category->name;?>
 						</div>
-						<div class="align-middle g-font-size-18 g-font-weight-700 text-right g-letter-spacing-1">
-						  <i class="fa fa-inr"></i> <?php $price = (strtotime(date('Y-m-d')) <= strtotime($product->offer_date)) ? $product->offer_price: $product->price;
+						<div class="align-middle">
+						  <?php /*<i class="fa fa-inr"></i> <?php $price = (strtotime(date('Y-m-d')) <= strtotime($product->offer_date)) ? $product->offer_price: $product->price;
 						  echo $price;?>
-						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ Unit</em>
+						  <em class="g-font-style-normal g-font-weight-300 g-font-size-10">/ Unit</em> */?>
+						  MOC <?php echo $product->price;?>
 						</div>
 					  </footer>
 					  <!-- End Article Footer -->

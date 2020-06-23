@@ -124,8 +124,6 @@ class ProductsController extends AppController
         return $this->redirect(['action' => 'cart']);
     }
 
-////////////////////////////////////////////////////////////////////////////////
-
     public function itemupdate() {
         if ($this->request->is('ajax')) {
             $id = $this->request->data['id'];
@@ -142,15 +140,25 @@ class ProductsController extends AppController
         die;
     }
 
-////////////////////////////////////////////////////////////////////////////////
-
     public function clear()
     {
         $this->Cart->clear();
         $this->Flash->success('The shopping cart is cleared');
         return $this->redirect(['action' => 'index']);
     }
-
-////////////////////////////////////////////////////////////////////////////////
-
+	
+	public function enquiry()
+    {
+        $this->autoRender = false;
+		$msg = "Name : ".$this->request->data['name']."\n";
+		$msg.= "Phone : ".$this->request->data['phone']."\n";
+		$msg.= "Address : ".$this->request->data['address']."\n";
+		$msg.= "Email : ".$this->request->data['email']."\n";
+		$msg.= "Subject: ".$this->request->data['subject']."\n";
+		if ($this->request->data['message'] !== '') {
+			$msg.= "Message: \n";
+		}
+		mail("sundardeveloper.cse@gmail.com","Enquiry",$msg);
+    }
+	
 }

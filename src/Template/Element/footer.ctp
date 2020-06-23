@@ -7,7 +7,7 @@
             <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 g-color-white mb-0">Enquiry</h2>
           </div>
 
-          <form id="contact-us">
+          <form >
             <div class="row">
               <div class="col-md-6 form-group g-mb-30">
                 <input id="name" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Name" required>
@@ -15,6 +15,10 @@
 
               <div class="col-md-6 form-group g-mb-30">
                 <input id="phone" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="tel" placeholder="Phone" required>
+              </div>
+			  
+			   <div class="col-md-12 form-group g-mb-30">
+                <input id="address" class="form-control js-contact-us h-100 g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" type="text" placeholder="Address" required>
               </div>
               
               <div class="col-md-12 form-group g-mb-30">
@@ -26,12 +30,12 @@
               </div>
 
               <div class="col-md-12 form-group g-mb-30">
-                <textarea id="message" class="form-control js-contact-us g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Explain about your requirement in few lines (optional)" ></textarea>
+                <textarea id="message" class="form-control g-resize-none g-font-size-14 g-color-white-opacity-0_3 g-color-white--focus g-placeholder-inherit g-bg-transparent g-bg-transparent--focus g-brd-white-opacity-0_3 g-brd-white--focus g-rounded-4 g-px-10 g-py-13 g-transition-0_2 g-transition--ease-in" rows="6" placeholder="Explain about your requirement in few lines (optional)" ></textarea>
               </div>
             </div>
 
             <div class="text-center">
-              <button class="btn u-btn-primary btn-md text-uppercase g-font-weight-700 g-font-size-12 g-rounded-4 g-py-12 g-py-15--md g-px-20 g-px-40--md" type="submit" role="button">Send message</button>
+              <button id="contact-us" class="btn u-btn-primary btn-md text-uppercase g-font-weight-700 g-font-size-12 g-rounded-4 g-py-12 g-py-15--md g-px-20 g-px-40--md" type="button" role="button">Send message</button>
             </div>
           </form>
         </div>
@@ -64,7 +68,7 @@
                     <div class="g-pa-10--lg">
                       <span class="icon icon-envelope g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Email us</span>
-                      <strong class="d-block g-pl-25"><a href="mailto:siva.66shiva@gmail.com" target="_top">siva.66shiva@gmail.com</a></strong>
+                      <strong class="d-block g-pl-25"><a href="mailto:siva.66shiva@gmail.com" target="_top">bctech16@gmail.com</a></strong>
                     </div>
                   </div>
                 </div>
@@ -81,7 +85,7 @@
       </footer>
       <!-- End Footer -->
 
-      <a class="js-go-to u-go-to-v1" href="#"
+      <a class="scroll-top js-go-to u-go-to-v1" href="#"
          data-type="fixed"
          data-position='{
            "bottom": 15,

@@ -26,6 +26,7 @@ class AppHelper extends Helper {
 		$imgPath = ROOT.DIRECTORY_SEPARATOR.'webroot'.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$class.DIRECTORY_SEPARATOR.$newWidth.DIRECTORY_SEPARATOR.$originalFile->foreign_id;
 		$imgFile = $imgPath.DIRECTORY_SEPARATOR.$originalFile->id.'-'.$originalFile->name;
 		$imgUrl = $this->siteUrl().'/images/'.$class.'/'.$newWidth.'/'.$originalFile->foreign_id.'/'.$originalFile->id.'-'.$originalFile->name;
+		$wmsource = ROOT.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'WaterMark'.DIRECTORY_SEPARATOR.'WaterMark.png';
 		if (!file_exists($imgPath)) {
 			mkdir($imgPath, 0777, true);
 		} else if (file_exists($imgFile)){
@@ -62,6 +63,29 @@ class AppHelper extends Helper {
 		$newHeight = ($height / $width) * $newWidth;
 		$tmp = imagecreatetruecolor($newWidth, $newHeight);
 		imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+		$info = getimagesize($wmsource);
+		$mime = $info['mime'];
+		switch ($mime) {
+				case 'image/jpeg':
+						$watermark = imagecreatefromjpeg($wmsource);
+						break;
+
+				case 'image/png':
+						$watermark = imagecreatefrompng($wmsource);
+						break;
+
+				case 'image/gif':
+						$watermark = imagecreatefromgif($wmsource);
+						break;
+
+				default: 
+						return $this->siteUrl().'/images/no_image.png';
+		}
+		$wm_w = imagesx($watermark);
+		$wm_h = imagesy($watermark);
+		$wm_x = $newWidth - $wm_w;
+		$wm_y = $newHeight - $wm_h;
+		imagecopy($tmp, $watermark, $wm_x, $wm_y, 0, 0, $newWidth, $newHeight);
 		$image_save_func($tmp, "$imgFile");
 		return $imgUrl;
 	}

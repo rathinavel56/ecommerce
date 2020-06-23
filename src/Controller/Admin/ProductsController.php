@@ -6,8 +6,6 @@ use App\Controller\AppController;
 class ProductsController extends AppController
 {
 
-////////////////////////////////////////////////////////////////////////////////
-
     public function index()
     {
 		$this->paginate = [
@@ -52,6 +50,9 @@ class ProductsController extends AppController
     {
         $product = $this->Products->newEntity();
         if ($this->request->is('post')) {
+			if ($this->request->data['offer_price'] == '') {
+				$this->request->data['offer_date'] = '';
+			}
 			$this->request->data['title'] = $this->request->data['name'];
 			$this->request->data['slug'] = $this->clean($this->request->data['name']);
 			$query = $this->Products->find();
@@ -64,7 +65,7 @@ class ProductsController extends AppController
 			unset($this->request->data['Attachments']);
 			$product = $this->Products->patchEntity($product, $this->request->data);
 			if ($result = $this->Products->save($product)) {
-				if (!empty($attachments)) {
+				if (!empty($attachments) && $attachments[0]['tmp_name'] != '') {
 					$this->insertAttachment($attachments, $result->id);
 				}
                 $this->Flash->success(__('The product has been saved.'));
@@ -130,13 +131,16 @@ class ProductsController extends AppController
 					$this->request->data['slug'] = ($productsCount[0]->count != 0) ? $this->request->data['slug'].'-'.($productsCount[0]->count+1): $this->request->data['slug'];
 				}
 			}
+			if ($this->request->data['offer_price'] == '') {
+				$this->request->data['offer_date'] = '';
+			}
 			$offer_date = $this->request->data['offer_date'];
 			$this->request->data['offer_date'] = $offer_date['year'].'-'.$offer_date['month'].'-'.$offer_date['day'];
 			$attachments = $this->request->data['Attachments'];
 			unset($this->request->data['Attachments']);
             $product = $this->Products->patchEntity($product, $this->request->data);
 			if ($this->Products->save($product)) {
-				if (!empty($attachments)) {
+				if (!empty($attachments) && $attachments[0]['tmp_name'] != '') {
 					$this->insertAttachment($attachments, $id);
 				}
                 $this->Flash->success(__('The product has been saved.'));

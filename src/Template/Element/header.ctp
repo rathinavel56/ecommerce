@@ -33,7 +33,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                     <div class="g-pa-10--lg">
                       <span class="icon icon-envelope g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Email us</span>
-                      <strong class="d-block g-pl-25"><a href="mailto:siva.66shiva@gmail.com" target="_top">siva.66shiva@gmail.com</a></strong>
+                      <strong class="d-block g-pl-25"><a href="mailto:bctech16@gmail.com" target="_top">bctech16@gmail.com</a></strong>
                     </div>
                   </div>
                 </div>
@@ -47,14 +47,14 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
             <div class="container">
               <div class="collapse navbar-collapse align-items-center flex-sm-row g-mr-40--sm" id="navBar" data-mobile-scroll-hide="true">
                 <ul id="js-scroll-nav" class="navbar-nav text-uppercase g-font-weight-700 g-font-size-13 g-py-10--md mr-auto marginauto">
-                  <li style="margin-top: 1px;" class="nav-item g-mr-15--lg g-mb-7 g-mb-0--lg active">
+                  <li style="margin-top: 1px;" class="js-header-nav nav-item g-mr-15--lg g-mb-7 g-mb-0--lg <?php echo ($this->request->query('cat_id')) ? '' : 'active';?>">
                     <a href="<?php echo Router::url('/');?>#home" class="nav-link g-color-primary--hover p-0">Home
                       <span class="sr-only">(current)</span></a>
                   </li>
-                  <li style="margin-top: 1px;" class="nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
+                  <li style="margin-top: 1px;" class="js-header-nav nav-item g-mx-10--lg g-mx-15--xl g-mb-7 g-mb-0--lg">
                     <a href="<?php echo Router::url('/');?>#ourProducts" class="nav-link g-color-primary--hover p-0">Pumps</a>
                   </li>
-				  <li class="nav-item g-ml-10--lg g-ml-15--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right" style="margin-top: -1px;">
+				  <li class="js-header-nav nav-item g-ml-10--lg g-ml-15--xl <?php echo ($this->request->query('cat_id')) ? 'active' : '';?>" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right" style="margin-top: -1px;">
 					   <div class="btn-group">
 							<a id="mega-menu-label-3" class="nav-link g-color-primary--hover p-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						   Categories
@@ -71,9 +71,9 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 							  </div>						   
 						</div>
 					</li>
-					 <li class="nav-item g-ml-10--lg g-ml-15--xl" style="margin-top: 1px;">
-                    <a href="#contact" class="nav-link g-color-primary--hover p-0">Contact Us</a>
-                  </li>
+					<li class="js-header-nav nav-item g-ml-10--lg g-ml-15--xl" style="margin-top: 1px;">
+						<a href="<?php echo Router::url('/');?>#contact" class="nav-link g-color-primary--hover p-0">Contact Us</a>
+					</li>
                 </ul>
               </div>
               <button class="navbar-toggler btn g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-minus-8 g-right-20" type="button"

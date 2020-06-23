@@ -25,15 +25,15 @@
             </div>
             <!-- End Product Info -->
             <!-- Price -->
-            <div class="g-mb-30">
-               <h2 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-12 text-uppercase mb-2">Price</h2>
+           <?php /*  <div class="g-mb-30">
+               <h2 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-12 text-uppercase mb-2">MOC</h2>
 			   <?php if(strtotime(date('Y-m-d')) <= strtotime($product->offer_date)) {?>
 				<span class="g-color-black g-font-weight-500 g-font-size-30 mr-2"><i class="fa fa-inr"></i> <?php echo $product->offer_price;?></span>
 				<s class="g-color-gray-dark-v4 g-font-weight-500 g-font-size-16"><i class="fa fa-inr"></i> <?php echo $product->price;?></s>
 			   <?php } else { ?>
 				<span class="g-color-black g-font-weight-500 g-font-size-30 mr-2"><i class="fa fa-inr"></i> <?php echo $product->price;?></span>
 			   <?php } ?>
-            </div>
+            </div> */?>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Model</h5>
                <label><?php echo $product->category->name;?></label>
@@ -44,19 +44,19 @@
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Discharge</h5>
-			   <label><?php echo $product->power_source;?></label>               
+			   <label><?php echo $product->power_source;?> M3/hr</label>               
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Efficency</h5>
-			   <label><?php echo $product->brand;?></label>               
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Motor Power</h5>
+               <label><?php echo $product->motor_speed;?> BKW/MKW</label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Max Flow Rate</h5>
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">MOC</h5>
+               <label><?php echo $product->price;?></label>
+            </div>
+			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Section Delivery</h5>
                <label><?php echo $product->max_flow_rate;?></label>
-            </div>
-			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
-               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Power BKW</h5>
-               <label><?php echo $product->motor_speed;?></label>
             </div>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Power MKW</h5>
@@ -77,6 +77,10 @@
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Flanges</h5>     
 				<label><?php echo $product->flanges;?></label>
+            </div>
+			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
+               <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Efficency</h5>
+			   <label><?php echo $product->brand;?></label>               
             </div>
             <div class="row g-mx-minus-5 g-mb-20">
                <div class="col g-px-5 g-mb-10">
