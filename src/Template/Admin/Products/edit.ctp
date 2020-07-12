@@ -8,12 +8,12 @@
         <?= $this->Form->create($product, ['class' => 'form-horizontal' , 'enctype' => 'multipart/form-data']) ?>
         <div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('category_id', ['options' => $categories, 'default' => 1, 'class' => 'form-control', 'label' => 'Model']); ?>
+			  <?php echo $this->Form->input('category_id', ['options' => $categories, 'default' => 1, 'class' => 'form-control', 'label' => 'Pump Type']); ?>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('name', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required']); ?>
+			  <?php echo $this->Form->input('name', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Pump Model']); ?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -29,21 +29,6 @@
 		<div class="form-group">
 			<div class="col-sm-10">
 			  <?php echo $this->Form->input('description', ['class' => 'form-control', 'rows' => 8, 'required' => 'required']); ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-10">
-			  <?php echo $this->Form->input('price', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'MOC']); ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-10">
-			  <?php echo $this->Form->input('offer_price', ['class' => 'form-control', 'type'=> 'text']); ?>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-10">
-			  <?php echo $this->Form->input('offer_date', ['class' => 'form-control', 'type'=> 'date']); ?>
 			</div>
 		</div>
 		<div class="form-group">
@@ -73,12 +58,12 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('brand', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Efficency']);?>
+			  <?php echo $this->Form->input('brand', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Efficiency']);?>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
-			  <?php echo $this->Form->input('max_flow_rate', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Section Delivery']);?>
+			  <?php echo $this->Form->input('max_flow_rate', ['class' => 'form-control', 'type'=> 'text', 'required' => 'required', 'label' => 'Suction and Delivery']);?>
 			</div>
 		</div>
 		<div class="form-group">

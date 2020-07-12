@@ -4,7 +4,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
       <header id="js-header" class="u-header u-header--sticky-top u-header--toggle-section u-header--change-appearance"
               data-header-fix-moment="200"
               data-header-fix-effect="slide">
-        <div class="text-center text-lg-left u-header__section u-header__section--hidden u-header__section--light g-bg-white g-brd-bottom g-brd-gray-light-v4 g-py-20">
+        <div class="text-center text-lg-left u-header__section u-header__section--hidden u-header__section--light g-bg-white g-brd-bottom g-brd-gray-light-v4">
           <div class="container">
             <div class="row flex-lg-row align-items-center justify-content-lg-start">
               <div class="col-6 col-sm-3 col-lg-2">
@@ -19,7 +19,8 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
                     <div class="text-right text-sm-left g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25"><a href="tel:+919840953488">+919840953488 (Sivakumar S)</a></strong>
+                      <strong class="d-block g-pl-25"><a href="tel:+919566262862">+91 95662 62862</a></strong>
+					  <strong class="d-block g-pl-25"><a href="tel:+917904197990">+91 79041 97990</a></strong>
                     </div>
                   </div>
                   <div class="col-sm g-hidden-lg-down g-brd-right--sm g-brd-gray-light-v4">
@@ -41,7 +42,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
             </div>
           </div>
         </div>
-        <div class="u-header__section u-header__section--dark g-bg-primary g-py-16"
+        <div class="u-header__section u-header__section--dark g-bg-primary"
              data-header-fix-moment-classes="u-shadow-v18">
           <nav class="navbar navbar-expand-lg py-0">
             <div class="container">

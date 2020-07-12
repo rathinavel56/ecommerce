@@ -58,9 +58,7 @@ $(document).ready(function() {
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('category_id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
-            <th><?= $this->Paginator->sort('price') ?></th>
-			<th><?= $this->Paginator->sort('offer_price') ?></th>
-			<th><?= $this->Paginator->sort('offer_date') ?></th>
+            <th><?= $this->Paginator->sort('price', 'Moc') ?></th>
 			<th><?= $this->Paginator->sort('is_home') ?></th>
             <th><?= $this->Paginator->sort('active') ?></th>
             <th class="actions">Actions</th>
@@ -72,9 +70,7 @@ $(document).ready(function() {
                 <td><?= $this->Number->format($product->id) ?></td>
                 <td><span class="category_id" data-value="<?php echo $product->category_id; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->category->name; ?></span></td>
                 <td><span class="name" data-value="<?php echo $product->name; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->name; ?></span></td>
-                <td><span class="price"><i class="fa fa-inr"></i> <?php echo $product->price; ?></span></td>
-				<td><span class="price" data-value="<?php echo $product->offer_price; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->offer_price != '' ? '<i class="fa fa-inr"></i> '. $product->offer_price : ''; ?></span></td>
-				<td><span class="price" data-value="<?php echo $product->offer_date; ?>" data-pk="<?php echo $product->id; ?>"><?php echo $product->offer_date; ?></span></td>
+                <td><?php echo $product->price; ?></span></td>
 				<td><?= ($product->is_home == 1) ? 'Yes': 'No'; ?></td>
                 <td><?php //echo $this->Html->link('Change To ' . (($product->active == true) ? 'Inactive' : 'Active'), ['controller' => 'products', 'action' => 'toggle', 'active', $product->id], ['class' => 'toggle', 'escape' => false]); ?><?php echo ($product->active == true) ? 'Inactive' : 'Active'; ?></td>
                 <td class="actions">

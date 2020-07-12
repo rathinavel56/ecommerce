@@ -7,7 +7,9 @@
     <div class="col-sm-5">
         <?= $this->Form->create($category) ?>
 
-        <?php echo $this->Form->input('name', ['class' => 'form-control']); ?>
+        <?php echo $this->Form->input('name', ['class' => 'form-control', 'label' => 'Pump Type']); ?>
+        <br />
+		<?php echo $this->Form->input('pump_model', ['class' => 'form-control', 'label' => 'Pump Model']); ?>
         <br />
         <?php echo $this->Form->input('slug', ['class' => 'form-control']); ?>
         <br />
