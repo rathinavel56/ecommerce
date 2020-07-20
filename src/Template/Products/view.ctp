@@ -38,7 +38,8 @@
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Model</h5>
                <label><?php echo $product->category->name;?></label>
             </div>
-            <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
+			<?php if ($product->is_tool == false) { ?>
+            <div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3 " role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Head</h5>
 			   <label><?php echo $product->head;?></label>               
             </div>
@@ -50,6 +51,7 @@
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">Motor Power</h5>
                <label><?php echo $product->motor_speed;?> BKW/MKW</label>
             </div>
+			<?php } ?>
 			<div class="d-flex justify-content-between align-items-center g-brd-bottom g-brd-gray-light-v3 py-3" role="tab">
                <h5 class="g-color-gray-dark-v5 g-font-weight-400 g-font-size-default mb-0">MOC</h5>
                <label><?php echo $product->price;?></label>

@@ -117,6 +117,11 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
+			  <?php echo $this->Form->input('is_tool', ['type' => 'checkbox', 'label' => 'Spares']); ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
 			  <?php echo $this->Form->button('Submit', ['class' => 'btn btn-primary']); ?>
 			</div>
 		</div>     

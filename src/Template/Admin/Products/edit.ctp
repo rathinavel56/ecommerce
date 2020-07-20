@@ -141,6 +141,11 @@
 			  <?php echo $this->Form->input('is_active', ['type' => 'checkbox']); ?>
 			</div>
 		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
+			  <?php echo $this->Form->input('is_tool', ['type' => 'checkbox', 'label' => 'Spares']); ?>
+			</div>
+		</div>
         <?php echo $this->Form->button('Submit', ['class' => 'btn btn-primary']); ?>
         <?php echo $this->Form->end(); ?>
     </div>

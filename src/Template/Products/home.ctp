@@ -61,7 +61,8 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 					  <p class="g-color-white-opacity-0_3 g-mb-25"><?php echo $productOffer->description;?></p>
 
 					  <!-- Article Icons -->
-					  <div class="g-overflow-hidden g-mb-15" style="padding-bottom: 50px;">
+					  <?php if ($productOffer->is_tool == false) { ?>
+					  <div class="g-overflow-hidden g-mb-15 <?php echo ($productOffer->is_tool === true) ? 'hide' : '';?>" style="padding-bottom: 50px;">
 						<ul class="list-inline text-center g-font-size-12 g-brd-top g-brd-bottom g-brd-white-opacity-0_1 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-color-white-opacity-0_3 g-pa-12-5-7 mx-0 g-my-5">
 							Head <?php echo $productOffer->head;?>
@@ -74,6 +75,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 						  </li>
 						</ul>
 					  </div>
+					  <?php } ?>
 					  <!-- End Article Icons -->
 
 					  <!-- Article Footer -->
@@ -138,7 +140,8 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 					  <p class="g-color-gray-dark-v5 g-mb-25"><?php echo (strlen($desc) > 40) ? substr($desc,0,37).'...' : $desc;?></p>
 
 					  <!-- Article Icons -->
-					  <div class="g-overflow-hidden g-mb-15">
+					  <?php if ($product->is_tool == false) { ?>
+					  <div class="g-overflow-hidden g-mb-15 ">
 						<ul class="list-inline text-center g-font-size-12 g-color-gray-dark-v5 g-brd-top g-brd-bottom g-brd-gray-light-v3 g-mx-minus-25">
 						  <li class="list-inline-item g-width-30x g-pa-12-5-7 mx-0 g-my-5">
 							Head <?php echo $product->head;?>
@@ -151,6 +154,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 						  </li>
 						</ul>
 					  </div>
+					  <?php } ?>
 					  <!-- End Article Icons -->
 
 					  <!-- Article Footer -->

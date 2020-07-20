@@ -54,7 +54,8 @@
                     <div class="g-pa-10--lg">
                       <span class="icon icon-screen-smartphone g-valign-middle g-font-size-18 g-color-primary g-mr-5"></span>
                       <span class="text-uppercase g-font-size-13">Call Us</span>
-                      <strong class="d-block g-pl-25"><a href="tel:+919840953488">+919840953488 (Sivakumar S)</a></strong>
+                      <strong class="d-block g-pl-25"><a href="tel:+919566262862">+91 95662 62862</a></strong>
+					  <strong class="d-block g-pl-25"><a href="tel:+917904197990">+91 79041 97990</a></strong>
                     </div>
                   </div>
                   <div class="col-sm g-hidden-lg-down g-brd-right--sm g-brd-gray-light-v4">
