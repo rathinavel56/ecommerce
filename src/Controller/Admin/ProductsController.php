@@ -50,7 +50,7 @@ class ProductsController extends AppController
     {
         $product = $this->Products->newEntity();
         if ($this->request->is('post')) {
-			if ($this->request->data['offer_price'] == '') {
+			if (isset($this->request->data['offer_price']) && $this->request->data['offer_price'] == '') {
 				$this->request->data['offer_date'] = '';
 			}
 			$this->request->data['title'] = $this->request->data['name'];
@@ -64,26 +64,27 @@ class ProductsController extends AppController
 			$attachments = $this->request->data['Attachments'];
 			unset($this->request->data['Attachments']);
 			$product = $this->Products->patchEntity($product, $this->request->data);
-			if ($result = $this->Products->save($product)) {
+			$result = $this->Products->save($product);
+			if ($result) {
 				if (!empty($attachments) && $attachments[0]['tmp_name'] != '') {
 					$this->insertAttachment($attachments, $result->id);
 				}
                 $this->Flash->success(__('The product has been saved.'));
                 return $this->redirect(['action' => 'index']);
             } else {
-				if($product->errors()){
+				if ($product->getErrors()) {
 					$error_msg = [];
-					foreach( $product->errors() as $errors){
-						if(is_array($errors)){
-							foreach($errors as $error){
-								$error_msg[]    =   $error;
+					foreach( $product->getErrors() as $key1 => $value1) {
+						if (is_array($value1)) {
+							foreach($value1 as $key => $value) {
+								$error_msg[] = $value.' '.$key1;
 							}
-						}else{
-							$error_msg[]    =   $errors;
+						} else {
+							$error_msg[] = $value1;
 						}
 					}
 
-					if(!empty($error_msg)){
+					if (!empty($error_msg)) {
 						$this->Flash->error(
 							__("Please fix the following error(s):".implode("\n \r", $error_msg))
 						);
@@ -104,7 +105,7 @@ class ProductsController extends AppController
 	
 	public function insertAttachment($attachments, $id)
     {
-		if($attachments) {
+		if ($attachments) {
 			foreach ($attachments as $attachment) {
 				$attachmentEntity = $this->Products->Attachments->newEntity();
 				$attachment['foreign_id'] = $id;
@@ -128,10 +129,10 @@ class ProductsController extends AppController
 				$query->where(['slug' => $this->request->data['slug']])->select(['count' => $query->func()->count('*')]);
 				if ($query) {
 					$productsCount = $query->toArray();
-					$this->request->data['slug'] = ($productsCount[0]->count != 0) ? $this->request->data['slug'].'-'.($productsCount[0]->count+1): $this->request->data['slug'];
+					$this->request->data['slug'] = ($productsCount[0]->count != 0) ? $this->request->data['slug'].'-'.($productesCount[0]->count+1): $this->request->data['slug'];
 				}
 			}
-			if ($this->request->data['offer_price'] == '') {
+			if (isset($this->request->data['offer_price']) && $this->request->data['offer_price'] == '') {
 				$this->request->data['offer_date'] = '';
 			}
 			$offer_date = $this->request->data['offer_date'];

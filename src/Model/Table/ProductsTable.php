@@ -72,10 +72,6 @@ class ProductsTable extends Table
             ->allowEmpty('image');
 
         $validator
-            ->requirePresence('price', 'create')
-            ->notEmpty('price');
-
-        $validator
             ->integer('quantity')
             ->requirePresence('quantity', 'create')
             ->notEmpty('quantity');

@@ -42,8 +42,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
     <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/icon-hs/style.css">
     <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/hamburgers/hamburgers.min.css">
     <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/chosen/chosen.css">
-    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/slick-carousel/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo $actual_link;?>assets/vendor/master-slider/source/assets/css/masterslider.main.css">
 
     <!-- CSS Template -->
     <link rel="stylesheet" href="<?php echo $actual_link;?>assets/css/styles.op-real-estate.css">
@@ -52,7 +50,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
     <link rel="stylesheet" href="<?php echo $actual_link;?>assets/css/custom.css">
 </head>
 <body>
-	<main class="g-pt-110 g-pt-120--md g-pt-170--lg">
+	<main class="g-pt-110">
 		<?php echo $this->element('header'); ?>
 			<?= $this->Flash->render(); ?>
 			<?= $this->fetch('content') ?>
@@ -67,8 +65,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 
     <!-- JS Implementing Plugins -->
     <script src="<?php echo $actual_link;?>assets/vendor/appear.js"></script>
-    <script src="<?php echo $actual_link;?>assets/vendor/slick-carousel/slick/slick.js"></script>
-    <script src="<?php echo $actual_link;?>assets/vendor/master-slider/source/assets/js/masterslider.min.js"></script>
 
     <!-- JS Unify -->
     <script src="<?php echo $actual_link;?>assets/js/hs.core.js"></script>
@@ -76,7 +72,6 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
     <script src="<?php echo $actual_link;?>assets/js/helpers/hs.hamburgers.js"></script>
     <script src="<?php echo $actual_link;?>assets/js/components/hs.scroll-nav.js"></script>
     <script src="<?php echo $actual_link;?>assets/js/components/hs.rating.js"></script>
-    <script src="<?php echo $actual_link;?>assets/js/components/hs.carousel.js"></script>
     <script src="<?php echo $actual_link;?>assets/js/components/hs.go-to.js"></script>
 
     <!-- JS Customization -->

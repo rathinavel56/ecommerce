@@ -9,8 +9,8 @@
 
         <?php echo $this->Form->input('name', ['class' => 'form-control', 'label' => 'Pump Type']); ?>
         <br />
-		<?php echo $this->Form->input('pump_model', ['class' => 'form-control', 'label' => 'Pump Model']); ?>
-        <br />
+		<?php // echo $this->Form->input('pump_model', ['class' => 'form-control', 'label' => 'Pump Model']); ?>
+
         <?php echo $this->Form->input('slug', ['class' => 'form-control']); ?>
         <br />
         <?php echo $this->Form->input('description', ['class' => 'form-control', 'rows' => 8]); ?>

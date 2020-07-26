@@ -63,7 +63,9 @@ class AppHelper extends Helper {
 		$newHeight = ($height / $width) * $newWidth;
 		$tmp = imagecreatetruecolor($newWidth, $newHeight);
 		imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-		$info = getimagesize($wmsource);
+		$image_save_func($tmp, "$imgFile");
+		return $imgUrl;
+		/*$info = getimagesize($wmsource);
 		$mime = $info['mime'];
 		switch ($mime) {
 				case 'image/jpeg':
@@ -87,7 +89,7 @@ class AppHelper extends Helper {
 		$wm_y = $newHeight - $wm_h;
 		imagecopy($tmp, $watermark, $wm_x, $wm_y, 0, 0, $newWidth, $newHeight);
 		$image_save_func($tmp, "$imgFile");
-		return $imgUrl;
+		return $imgUrl;*/
 	}
 
 }

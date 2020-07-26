@@ -1,20 +1,44 @@
 <div class="container g-py-50">
    <div class="row">
       <div class="col-lg-7">
-			<div id="carouselCus1" class="js-carousel g-pt-10 g-mb-10"
-                 data-infinite="true"
-                 data-fade="true"
-                 data-arrows-classes="u-arrow-v1 g-brd-around g-brd-white g-absolute-centered--y g-width-45 g-height-45 g-font-size-14 g-color-white g-color-primary--hover rounded-circle"
-                 data-arrow-left-classes="fa fa-angle-left g-left-40"
-                 data-arrow-right-classes="fa fa-angle-right g-right-40">
-				 <?php if ($product->attachments) {
-							$i = 0;
-							foreach($product->attachments as $attachments) {?>
-							  <div class="js-slide g-bg-cover g-bg-black-opacity-0_1--after view-img-border">
-								<img class="img-fluid w-100" src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>" alt="Image Description">
-							  </div>
-					<?php $i++;} } ?>
-            </div>
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	  <?php if(!empty($product->attachments) && count($product->attachments) > 1) {?>
+	  <ul class="carousel-indicators">
+				<?php
+					$i = 0;
+					foreach ($product->attachments as $attachments) {
+						$i++;
+						?>
+    <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo ($i == 1) ? 'active' : '';?>"></li>
+	<?php
+				}
+		 ?>  
+   </ul>
+   <?php } ?> 
+			  <div class="carousel-inner">
+			  <?php if(!empty($product->attachments)) {
+					$i = 0;
+					foreach ($product->attachments as $attachments) {
+						$i++;
+					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('1400', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
+				?>
+				  <div class="maincaro carousel-item <?php echo ($i == 1) ? 'active' : '';?>">
+					<img src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>" style="width:100%;">
+				  </div>
+				<?php
+				}
+			}
+		 ?>  
+			 </div>
+			 <?php if(!empty($product->attachments) && count($product->attachments) > 1) {?>
+			 <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			  </a>
+			  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			  </a>
+			  <?php } ?>  
+		 </div>
       </div>
       <div class="col-lg-5">
          <div class="g-px-40--lg g-pt-70 no-pad-top">

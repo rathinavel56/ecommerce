@@ -1,4 +1,4 @@
-<?php if ($this->request->params['paging'][$this->request->params['controller']]['count'] != 0) { ?>
+<?php if ($this->request->params['paging'][$this->request->params['controller']]['count'] > 1) { ?>
 <nav aria-label="Page navigation" class="fullwidth">
     <ul class="pagination">
         <?php

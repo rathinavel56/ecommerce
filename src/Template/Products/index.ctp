@@ -1,7 +1,7 @@
 
       <section id="ourProducts" class="g-py-80">
         <div class="container text-center g-max-width-770 g-mb-60">
-          <div class="u-heading-v2-2--top g-brd-primary g-mb-20">
+          <div class="">
             <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 mb-0"><?php echo $cat_name;?></h2>
           </div>
         </div>

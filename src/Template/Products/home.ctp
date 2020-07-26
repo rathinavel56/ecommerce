@@ -2,29 +2,42 @@
 use Cake\Routing\Router; 
 $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/";
 ?>
-      <section id="home">
-        <div class="master-slider ms-promo-2" id="promoSlider">
-		<?php if(!empty($productBanners)) {
-				foreach ($productBanners as $productBanner) {
-					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('1400', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
-		?>
-          <div class="ms-slide">
-            <img src="<?php echo $actual_link;?>assets/img/blank.gif" alt="Image description"
-                 data-src="<?php echo $imgUrl;?>">
-
-            <div class="ms-layer text-center g-absolute-centered g-max-width-550"
-                 data-origin="ml"
-                 data-type="text"
-                 data-effect="fade()"
-                 data-ease="easeOutExpo"
-                 data-duration="2200">
-            </div>
-          </div>
-		 <?php
+      <section id="home" class="pt-5">
+		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<ul class="carousel-indicators">
+				<?php if(!empty($productBanners)) {
+					$i = 0;
+					foreach ($productBanners as $productBanner) {
+						$i++;
+						?>
+    <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo ($i == 1) ? 'active' : '';?>"></li>
+	<?php
 				}
 			}
-		 ?>
-        </div>
+		 ?>  
+   </ul>
+			  <div class="carousel-inner">
+			  <?php if(!empty($productBanners)) {
+					$i = 0;
+					foreach ($productBanners as $productBanner) {
+						$i++;
+					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('original', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
+				?>
+				  <div class="maincaro carousel-item <?php echo ($i == 1) ? 'active' : '';?>">
+					<img src="<?php echo $imgUrl;?>">
+				  </div>
+				<?php
+				}
+			}
+		 ?>  
+			 </div>
+			 <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			  </a>
+			  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			  </a>
+		 </div>
       </section>
 	 <?php if(!empty($productOffers->toArray())) {?>
       <section id="specialOffers">
@@ -108,9 +121,10 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 
       <!-- Section Content -->
 	  <?php if(!empty($products)) { ?>
-      <section id="ourProducts" class="g-py-80">
+	  <br>
+      <section id="ourProducts" class="">
         <div class="container text-center g-max-width-770 g-mb-60">
-          <div class="u-heading-v2-2--top g-brd-primary g-mb-20">
+          <div class="">
             <h2 class="text-uppercase u-heading-v2__title g-line-height-1_3 g-font-weight-700 g-font-size-26 mb-0">Our New Products</h2>
           </div>
         </div>
@@ -125,12 +139,12 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 					<!-- Article Image -->
 					<div class="homeProductImg text-center">
 						<?php $imgUrl = !empty($product->attachments) ? $this->App->imageResize('350', 'Products', $product->attachments[0]): $this->App->siteUrl().'/images/no_image.png';?>
-						<img class="w-100 d-block g-rounded-top-5" src="<?php echo $imgUrl;?>" alt="Image description">
+						<img class="img-fluid" src="<?php echo $imgUrl;?>" alt="Image description">
 					</div>
 					<!-- End Article Image -->
 
 					<!-- Article Content -->
-					<div class="g-brd-around g-brd-top-none g-brd-gray-light-v3 g-rounded-bottom-5 g-pa-30">
+					<div class="g-brd-around g-brd-top-none g-brd-gray-light-v3 g-rounded-bottom-5 g-pa-30 homeProductContent">
 					  <!-- Article Title -->
 					  <h3 class="text-uppercase g-font-weight-700 g-font-size-16 g-mb-20">
 						<?php echo $this->Html->link((strlen($product->name) > 27) ? substr($product->name,0,24).'...' : $product->name, ['action' => 'view', $product->slug, '_full' => true], ['class' => 'g-color-main g-color-primary--hover g-text-underline--none--hover']); ?>
