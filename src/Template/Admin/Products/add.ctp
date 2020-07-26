@@ -32,6 +32,11 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-10">
+			  <?php echo $this->Form->input('price', ['class' => 'form-control', 'required' => 'required', 'label' => 'Moc']); ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10">
 			  <?php echo $this->Form->input('quantity', ['class' => 'form-control', 'type'=> 'number', 'required' => 'required']); ?>
 			</div>
 		</div>
