@@ -23,7 +23,7 @@
 					$imgUrl = !empty($productBanner->attachments) ? $this->App->imageResize('1400', 'Products', $productBanner->attachments[0]): $this->App->siteUrl().'/images/no_image.png';
 				?>
 				  <div class="maincaro carousel-item <?php echo ($i == 1) ? 'active' : '';?>">
-					<img src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>" style="width:100%;">
+					<img src="<?php echo $this->App->imageResize('650', 'Products', $attachments);?>">
 				  </div>
 				<?php
 				}
